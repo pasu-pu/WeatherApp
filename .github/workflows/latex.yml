@@ -1,17 +1,20 @@
-name: Build LaTeX
+name: Build & Publish PDF
 
 on:
   push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # damit wir zurück ins Repo pushen dürfen
+
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # nötig, damit wir später committen können
 
       - name: Install TeX Live
         run: |
@@ -23,11 +26,17 @@ jobs:
           mkdir -p out
           latexmk -pdf -interaction=nonstopmode -output-directory=out main.tex
 
-      - name: Show workspace (Debug)
-        run: ls -R .
+      - name: Prepare docs folder
+        run: |
+          mkdir -p docs
+          cp out/main.pdf docs/main.pdf
 
-      - name: Upload PDF Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: pdf_document
-          path: out/main.pdf
+      - name: Commit and push PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/main.pdf
+          git commit -m "Automated PDF build [skip ci]" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
