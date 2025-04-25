@@ -1,0 +1,31 @@
+name: Build LaTeX
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install TeX Live
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-full latexmk
+
+    - name: Build PDF with latexmk
+      working-directory: src
+      run: |
+        latexmk -pdf -interaction=nonstopmode -output-directory=../out main.tex
+
+    - name: Upload PDF as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: PDF-Dokument
+        path: out/main.pdf
