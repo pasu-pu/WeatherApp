@@ -1,4 +1,4 @@
-name: Build & Publish PDF
+name: "Build & Publish PDF"
 
 on:
   push:
@@ -11,32 +11,32 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout repository
+      - name: "Checkout repository"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Debug: list workspace
+      - name: "Debug list workspace"
         run: |
           echo "Working directory: $PWD"
           ls -R $PWD
 
-      - name: Install TeX Live
+      - name: "Install TeX Live"
         run: |
           sudo apt-get update
           sudo apt-get install -y texlive-full latexmk
 
-      - name: Build PDF
+      - name: "Build PDF"
         run: |
           mkdir -p out
           latexmk -pdf -interaction=nonstopmode -output-directory=out main.tex
 
-      - name: Prepare docs folder
+      - name: "Prepare docs folder"
         run: |
           mkdir -p docs
           cp out/main.pdf docs/main.pdf
 
-      - name: Commit and push PDF
+      - name: "Commit and push PDF"
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
