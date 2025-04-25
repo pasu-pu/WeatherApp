@@ -2,7 +2,7 @@ name: Build & Publish PDF
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -16,9 +16,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Debug: show workspace
+      - name: Debug: list workspace
         run: |
-          echo "→ Arbeitsverzeichnis: $PWD"
+          echo "Working directory: $PWD"
           ls -R $PWD
 
       - name: Install TeX Live
