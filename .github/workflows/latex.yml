@@ -8,13 +8,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # damit wir zurück ins Repo pushen dürfen
+      contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # nötig, damit wir später committen können
+          fetch-depth: 0
+
+      - name: Debug: show workspace
+        run: |
+          echo "→ Arbeitsverzeichnis: $PWD"
+          ls -R $PWD
 
       - name: Install TeX Live
         run: |
