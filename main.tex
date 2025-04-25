@@ -1,6 +1,5 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{geometry}
@@ -9,7 +8,6 @@
 \usepackage{titlesec}
 \usepackage{parskip}
 \usepackage{longtable}
-\usepackage{graphicx}
 
 \geometry{margin=2.5cm}
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
@@ -19,8 +17,7 @@
 \author{
   Pascal Putz \\ \texttt{pascal.putz@study.thws.de} \\ 5123135
   \and
-  [Team Member 2] \\ \texttt{email@domain} \\ 7654321
-  % bis zu vier Teammitglieder
+  [Weitere Teammitglieder hier]
 }
 \date{April 2025}
 
@@ -32,218 +29,102 @@
 \hline
 \textbf{Name} & \textbf{Email} & \textbf{Matrikelnummer} \\
 \hline
-Pascal Putz & pascal.putz@study.thws.de & 5123135 \\
+Joel Putz & joel.putz@example.com & 1234567 \\
 \hline
-[Team Member 2] & email@domain & 7654321 \\
-\hline
-% Weitere Teammitglieder bis max. 4
+% Weitere Teammitglieder hier einfügen
 \end{longtable}
-
-
 
 \section{Project Overview}
-\textbf{Background.} In modern daily life, accurate weather information is essential for planning activities, travel, and commuting. However, most weather apps do not consider a user’s personal schedule, leading to suboptimal planning.
-
-\textbf{Problem Statement.} Users must manually cross‐check weather forecasts with their personal calendars to decide what to do on free days. This manual process is time-consuming and error-prone.
-
-\textbf{Solution.} WeatherNow Calendar Integration is a React-based frontend application that merges real-time and forecasted weather data from the OpenWeatherMap API with free/busy information from the Google Calendar API. By selecting a date in an interactive calendar, users receive tailored activity suggestions based on expected weather conditions and their actual availability.
-
-\textbf{Objectives.}
+We will build \textbf{WeatherNow Calendar}, a React‑based frontend application combining:
 \begin{itemize}[nosep]
-  \item Automate the correlation of weather forecasts with user availability.
-  \item Provide clear, actionable activity recommendations.
-  \item Offer an intuitive, responsive interface for mobile and desktop.
-  \item Demonstrate proficiency in React, RESTful API integration, and containerized deployment.
+  \item Real‑time and forecasted weather data (OpenWeatherMap API)
+  \item User’s schedule and free days (Google Calendar API)
+  \item Activity recommendations based on weather and availability
 \end{itemize}
-
-\textbf{Target Audience.}  
-Travelers, commuters, students, and outdoor enthusiasts who wish to optimize their free time around weather conditions without manual cross-referencing.
-
+Users—such as travelers, commuters and outdoor enthusiasts—can plan free‑time activities by selecting a date in their calendar; the app then analyzes weather statistics for that day and suggests suitable indoor or outdoor options.
 
 \section{Key Features}
-\subsection*{Must‐Have Requirements}
+\subsection*{Must‑have}
 \begin{itemize}[nosep]
-  \item \textbf{City Search \& Current Weather.}  
-    Users enter a city name; the app validates input, calls 
-    \texttt{/data/2.5/weather?q=City\&units=metric}, and displays: temperature, humidity, wind speed/direction, pressure, description, and icon.
-
-  \item \textbf{Five‐Day Forecast.}  
-    Retrieves 3-hour‐interval forecasts from 
-    \texttt{/data/2.5/forecast?q=City\&units=metric}, computes daily high/low,
-    and presents both detailed and summary views.
-
-  \item \textbf{Geolocation Lookup.}  
-    Upon permission, the browser’s Geolocation API provides coords; weather
-    is fetched via 
-    \texttt{/data/2.5/weather?lat=\dots\&lon=\dots} without manual entry.
-
-  \item \textbf{Unit Toggle.}  
-    Allows switching between Celsius and Fahrenheit. Temperatures update
-    dynamically by re-fetching with \texttt{\&units=metric} or 
-    \texttt{\&units=imperial}.
-
-  \item \textbf{Theme Toggle.}  
-    Dark and light modes enhance usability in different lighting; preference
-    persists via \texttt{localStorage}.
-
-  \item \textbf{Interactive Calendar.}  
-    Embeds a calendar widget (e.g., \texttt{react-calendar}). Users select any
-    date to trigger weather analysis.
-
-  \item \textbf{Activity Suggestions.}  
-    For the chosen date, forecast (or historical) data is analyzed against
-    predefined rules (e.g., sunny $\rightarrow$ hiking; rainy $\rightarrow$
-    museum) and recommendations are displayed.
-
-  \item \textbf{Error Handling.}  
-    All API calls use try/catch. The UI shows toast notifications for errors
-    (“City not found,” “Permission denied,” “Network error”).
-
-  \item \textbf{Responsive UI.}  
-    CSS Grid/Flexbox ensure layouts adapt for mobile (<600px), tablet (600–1024px),
-    and desktop (>1024px).
-
-  \item \textbf{Client‐Side Navigation.}  
-    React Router manages routes for Home, Forecast, and Calendar views,
-    updating the URL accordingly (e.g., \texttt{/forecast}).
+  \item Search by city name: display current weather (temp, wind, humidity, conditions, icon)
+  \item 5‑day forecast in 3‑hour intervals
+  \item Geolocation lookup: fetch weather for user’s current position
+  \item Toggle units: Celsius / Fahrenheit
+  \item Toggle theme: light / dark mode
+  \item Interactive calendar: select any date
+  \item On date selection: show weather data + activity suggestions
+  \item Error handling: invalid city, permission denied, API failures
+  \item Responsive UI: mobile and desktop
+  \item Navigation: Home, Forecast, Calendar views (React Router)
 \end{itemize}
 
-\subsection*{Nice‐to‐Have Requirements}
+\subsection*{Nice‑to‑have}
 \begin{itemize}[nosep]
-  \item Store and display recently searched cities.
-  \item Synchronize multiple Google calendars (work, personal).
-  \item Localize UI and weather descriptions (EN/DE).
-  \item Lookup historical weather for past dates.
-  \item Push notifications for severe weather or upcoming free days.
+  \item Store and recall recent city searches
+  \item Sync and overlay multiple Google calendars
+  \item Localization of weather descriptions (multi‑language)
+  \item Historical weather lookup (past dates)
+  \item Push notifications for severe weather or upcoming free days
 \end{itemize}
-
-
 
 \section{User Roles and Interactions}
-\textbf{Primary Role:} End User.
-
-\subsection*{Personas}
+\textbf{Primary role:} General user  
+\textbf{Interactions:}
 \begin{itemize}[nosep]
-  \item \textbf{Anna (28, Hiker).} Uses app on weekends to plan outdoor trips.
-  \item \textbf{Max (35, Commuter).} Checks rain forecasts before biking.
-  \item \textbf{Lisa (22, Student).} Schedules museum visits on free days.
+  \item Enter or select a city → view current weather and forecast
+  \item Grant calendar access → see free/busy days
+  \item Click on a calendar date → fetch and display weather + suggestions
+  \item Toggle units and theme via buttons
+  \item Navigate via header or menu to Home, Forecast, Calendar
+  \item Receive toast/message on errors (e.g., “City not found”)
 \end{itemize}
-
-\subsection*{Interaction Flow}
-\begin{enumerate}[nosep]
-  \item User lands on Home; may grant geolocation.
-  \item Home displays current weather for location or default city.
-  \item User navigates to Forecast via menu to see five‐day outlook.
-  \item User opens Calendar, clicks a date; weather data and suggestions load.
-  \item User toggles units/theme; UI re-renders accordingly.
-  \item Errors are shown inline or via toast if operations fail.
-\end{enumerate}
-
-
-
 
 \section{User Stories / Use Cases}
-\begin{longtable}{|p{1cm}|p{3cm}|p{10cm}|}
-\hline
-\textbf{ID} & \textbf{Title} & \textbf{Description} \\
-\hline
-US1 & Search City & As a user, I enter a city name to retrieve and view current weather conditions. \\
-\hline
-US2 & View Forecast & As a user, I request a five‐day forecast to plan my activities. \\
-\hline
-US3 & Use My Location & As a user, I allow geolocation so I can see weather for my current position. \\
-\hline
-US4 & Select Date & As a user, I click a date on the calendar to view weather and activity suggestions. \\
-\hline
-US5 & Toggle Units & As a user, I switch between Celsius and Fahrenheit for my preference. \\
-\hline
-US6 & Toggle Theme & As a user, I enable dark mode in low‐light conditions. \\
-\hline
-US7 & Handle Error & As a user, I receive informative feedback when an API call or permission fails. \\
-\hline
-\end{longtable}
+\begin{enumerate}[nosep]
+  \item As a user, I want to search for a city name so I can view its current weather.
+  \item As a user, I want to see a five‑day forecast so I can plan upcoming days.
+  \item As a user, I want to grant calendar access so the app knows my free days.
+  \item As a user, I want to click a date in my calendar to get weather stats and activity suggestions for that day.
+  \item As a user, I want to toggle between °C and °F based on my preference.
+  \item As a user, I want dark mode at night to reduce eye strain.
+  \item As a user, I want to be notified if an API call fails or if I enter an invalid city.
+\end{enumerate}
 
-
-
-\section{Non‐Functional Requirements}
-\subsection*{Usability}
-The UI shall use consistent typography, spacing, and icon sets. Tooltips and labels
-ensure discoverability without documentation.
-
-\subsection*{Accessibility}
-The application shall conform to WCAG 2.1 AA:
+\section{Non‑Functional Requirements}
 \begin{itemize}[nosep]
-  \item Color contrast $\ge 4.5:1$.
-  \item Keyboard navigation across all interactive elements.
-  \item ARIA roles and labels on custom components.
+  \item \textbf{Usability:} Clear labels, consistent icons, minimal learning curve
+  \item \textbf{Responsiveness:} Fluid layout with CSS Flexbox/Grid for all viewport sizes
+  \item \textbf{Accessibility:} ARIA labels, sufficient color contrast, keyboard navigation
+  \item \textbf{Performance:} Data fetch + render complete under 1.5 s on average networks
+  \item \textbf{Security:} API keys stored in environment variables, HTTPS only
+  \item \textbf{Maintainability:} Modular React components, clear folder structure, documented code
+  \item \textbf{Scalability:} Design to add new APIs or features without major refactoring
 \end{itemize}
-
-\subsection*{Performance}
-\begin{itemize}[nosep]
-  \item Initial bundle size $\le$ 200 KB (gzipped).
-  \item Time to Interactive (TTI) $\le$ 1.5 s on 3G.
-  \item Lazy load calendar and forecast modules.
-\end{itemize}
-
-\subsection*{Reliability}
-Implement automatic retry (3 attempts) with exponential backoff for transient API errors.
-Cache last‐fetched data in \texttt{sessionStorage}.
-
-\subsection*{Security}
-\begin{itemize}[nosep]
-  \item Enforce HTTPS and HSTS.
-  \item Store API keys in environment variables; do not expose in client bundle.
-  \item Use OAuth 2.0 for Google Calendar access.
-\end{itemize}
-
-\subsection*{Maintainability}
-\begin{itemize}[nosep]
-  \item Modular component structure: \texttt{components/}, \texttt{services/}, \texttt{styles/}.
-  \item Code style enforced via ESLint and Prettier.
-  \item Inline JSDoc comments for key functions.
-\end{itemize}
-
-\subsection*{Scalability \& Extensibility}
-Architecture shall support:
-\begin{itemize}[nosep]
-  \item Addition of new APIs (e.g., air quality, UV index) via service layer abstraction.
-  \item New UI themes or languages with minimal effort.
-\end{itemize}
-
-
 
 \section{Technology Assumptions}
 \begin{itemize}[nosep]
-  \item \textbf{Frontend Framework:} React 18 with Hooks and Context API.
-  \item \textbf{Styling:} CSS Modules or Tailwind CSS (TBD by team).
-  \item \textbf{Routing:} React Router DOM v6 for nested and parameterized routes.
-  \item \textbf{Calendar Component:} \texttt{react-calendar} for date selection.
-  \item \textbf{Notifications:} \texttt{react-toastify} for user alerts.
-  \item \textbf{Build Tools:} Vite for fast development and optimized production builds.
-  \item \textbf{Containerization:} Docker multi-stage build; Nginx serves static files.
-  \item \textbf{Weather API:} OpenWeatherMap REST endpoints (current, forecast, geocoding).
-  \item \textbf{Calendar API:} Google Calendar via OAuth 2.0 (free/busy, events).
+  \item \textbf{Frontend:} React.js, JavaScript (ES6+)
+  \item \textbf{Styling:} CSS Modules or Tailwind CSS
+  \item \textbf{Routing:} React Router DOM
+  \item \textbf{APIs:} 
+    \begin{itemize}[nosep]
+      \item OpenWeatherMap REST API for current weather, forecast, geocoding 
+      \item Google Calendar API for user’s events and free/busy times
+    \end{itemize}
+  \item \textbf{State Management:} React Context or Redux (optional)
+  \item \textbf{Build / Deploy:} Docker container with Nginx serving static build
 \end{itemize}
 
 \section{Project Constraints}
 \begin{itemize}[nosep]
-  \item OpenWeatherMap free tier: max 60 calls/minute.
-  \item Google Calendar API quotas and OAuth consent verification timeline.
-  \item Requires explicit user permission for geolocation and calendar access.
-  \item No custom backend development; all logic in frontend.
-  \item Requirements Document due: April 30, 2025.
-  \item \textbf{Project Timeline:}
-  \begin{itemize}[nosep]
-    \item Requirements: by April 30, 2025
-    \item Design Mockups: by May 7, 2025
-    \item Implementation: May 8 – July 10, 2025
-    \item Testing \& Refinement: July 11 – July 20, 2025
-    \item Final Submission: July 30, 2025
-  \end{itemize}
+  \item OpenWeatherMap free tier: max 60 calls/minute
+  \item Google Calendar API quotas and OAuth consent screen requirements
+  \item Requires explicit user consent for calendar and location access
+  \item No user authentication beyond Google OAuth for calendar access
+  \item Deadline for Requirements Document: April 30, 2025
 \end{itemize}
 
-
 \section{Acknowledgement of AI Tools}
-This document was drafted and refined using GPT-4o based on an outline provided by the authors. The authors critically reviewed and enhanced the output to ensure coherence, completeness, and alignment with course requirements.
+This document was drafted and refined using GPT-4o based on an outline containing project information. The authors reviewed, revised, and enhanced the GPT-4o output with additional content and edited for clarity and style.
 
 \end{document}
