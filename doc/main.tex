@@ -9,6 +9,9 @@
 \usepackage{parskip}
 \usepackage{longtable}
 
+% Unicode-Zeichen 202F (narrow no-break space) als dünnen Abstand definieren
+\DeclareUnicodeCharacter{202F}{\,}
+
 \geometry{margin=2.5cm}
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
@@ -35,19 +38,19 @@ Joel Putz & joel.putz@example.com & 1234567 \\
 \end{longtable}
 
 \section{Project Overview}
-We will build \textbf{WeatherNow Calendar}, a React‑based frontend application combining:
+We will build \textbf{WeatherNow Calendar}, a React-based frontend application combining:
 \begin{itemize}[nosep]
-  \item Real‑time and forecasted weather data (OpenWeatherMap API)
+  \item Real-time and forecasted weather data (OpenWeatherMap API)
   \item User’s schedule and free days (Google Calendar API)
   \item Activity recommendations based on weather and availability
 \end{itemize}
-Users—such as travelers, commuters and outdoor enthusiasts—can plan free‑time activities by selecting a date in their calendar; the app then analyzes weather statistics for that day and suggests suitable indoor or outdoor options.
+Users—such as travelers, commuters and outdoor enthusiasts—can plan free-time activities by selecting a date in their calendar; the app then analyzes weather statistics for that day and suggests suitable indoor or outdoor options.
 
 \section{Key Features}
-\subsection*{Must‑have}
+\subsection*{Must-have}
 \begin{itemize}[nosep]
   \item Search by city name: display current weather (temp, wind, humidity, conditions, icon)
-  \item 5‑day forecast in 3‑hour intervals
+  \item 5-day forecast in 3-hour intervals
   \item Geolocation lookup: fetch weather for user’s current position
   \item Toggle units: Celsius / Fahrenheit
   \item Toggle theme: light / dark mode
@@ -58,11 +61,11 @@ Users—such as travelers, commuters and outdoor enthusiasts—can plan free‑t
   \item Navigation: Home, Forecast, Calendar views (React Router)
 \end{itemize}
 
-\subsection*{Nice‑to‑have}
+\subsection*{Nice-to-have}
 \begin{itemize}[nosep]
   \item Store and recall recent city searches
   \item Sync and overlay multiple Google calendars
-  \item Localization of weather descriptions (multi‑language)
+  \item Localization of weather descriptions (multi-language)
   \item Historical weather lookup (past dates)
   \item Push notifications for severe weather or upcoming free days
 \end{itemize}
@@ -82,7 +85,7 @@ Users—such as travelers, commuters and outdoor enthusiasts—can plan free‑t
 \section{User Stories / Use Cases}
 \begin{enumerate}[nosep]
   \item As a user, I want to search for a city name so I can view its current weather.
-  \item As a user, I want to see a five‑day forecast so I can plan upcoming days.
+  \item As a user, I want to see a five-day forecast so I can plan upcoming days.
   \item As a user, I want to grant calendar access so the app knows my free days.
   \item As a user, I want to click a date in my calendar to get weather stats and activity suggestions for that day.
   \item As a user, I want to toggle between °C and °F based on my preference.
@@ -90,12 +93,12 @@ Users—such as travelers, commuters and outdoor enthusiasts—can plan free‑t
   \item As a user, I want to be notified if an API call fails or if I enter an invalid city.
 \end{enumerate}
 
-\section{Non‑Functional Requirements}
+\section{Non-Functional Requirements}
 \begin{itemize}[nosep]
   \item \textbf{Usability:} Clear labels, consistent icons, minimal learning curve
   \item \textbf{Responsiveness:} Fluid layout with CSS Flexbox/Grid for all viewport sizes
   \item \textbf{Accessibility:} ARIA labels, sufficient color contrast, keyboard navigation
-  \item \textbf{Performance:} Data fetch + render complete under 1.5 s on average networks
+  \item \textbf{Performance:} Data fetch + render complete under 1.5\,s on average networks
   \item \textbf{Security:} API keys stored in environment variables, HTTPS only
   \item \textbf{Maintainability:} Modular React components, clear folder structure, documented code
   \item \textbf{Scalability:} Design to add new APIs or features without major refactoring
