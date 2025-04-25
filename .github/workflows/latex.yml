@@ -1,33 +1,21 @@
-name: Build LaTeX
+name: Test Artifact Upload
 
-on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+on: [push]
 
 jobs:
-  build:
+  test-upload:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install TeX Live
+      - name: Create test file
         run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-full latexmk
-
-      - name: Build PDF
-        run: |
-          mkdir -p out
-          latexmk -pdf -interaction=nonstopmode -output-directory=out main.tex
+          mkdir -p test-out
+          echo "Hallo Test" > test-out/test.txt
 
       - name: Show workspace (Debug)
         run: ls -R .
 
-      - name: Upload PDF Artifact
+      - name: Upload test artifact
         uses: actions/upload-artifact@v3
         with:
-          name: pdf_document
-          path: out/main.pdf
+          name: test_artifact
+          path: test-out/test.txt
