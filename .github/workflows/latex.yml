@@ -2,14 +2,13 @@ name: Build LaTeX
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -24,12 +23,11 @@ jobs:
           mkdir -p out
           latexmk -pdf -interaction=nonstopmode -output-directory=out main.tex
 
-      - name: Show workspace contents
+      - name: Show workspace (Debug)
         run: ls -R .
 
-      - name: Upload PDF as artifact
-        # Zum Test auf v2 pinnen – später wieder auf v3 umstellen
-        uses: actions/upload-artifact@v2
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: PDF-Dokument
+          name: pdf_document
           path: out/main.pdf
