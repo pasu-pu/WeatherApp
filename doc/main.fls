@@ -582,14 +582,14 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmtt12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ts1-lmr12.tfm
-INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
-INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT main.aux
 INPUT ./main.out
