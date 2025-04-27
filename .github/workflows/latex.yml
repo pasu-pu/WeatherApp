@@ -30,7 +30,6 @@ jobs:
         run: |
           mkdir -p out
           latexmk -xelatex -interaction=nonstopmode -output-directory=out doc/main.tex
-          rm -f *.bbl *.aux *.blg *.bcf *.out *.run.xml *.fls *.fdb_latexmk *.xdv *.lof *.lot *.log
 
       - name: Prepare docs folder
         run: |
