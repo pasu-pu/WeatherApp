@@ -1,6 +1,7 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[13pt,a4paper]{extarticle}
 \usepackage[utf8]{inputenc}
 \DeclareUnicodeCharacter{202F}{\,}  % narrow no-break space
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{geometry}
@@ -26,7 +27,6 @@
   Manuel Stöth \\ \texttt{manuel.stoeth@study.thws.de} \\ 5123045
   \and
   Marvin Kraus \\ \texttt{marvin.kraus@study.thws.de} \\ 5123143
-  \and
 }
 \date{April 2025}
 
@@ -55,7 +55,7 @@ Marvin Kraus & marvin.kraus@study.thws.de & 5123143 \\
 \section{Project Overview}
 
 \subsection{Project Description}
-WeatherNow Calendar Integration is a web-based application designed to simplify free-time planning by combining real-time weather data with the user’s personal calendar schedule. By leveraging the OpenWeatherMap API and the Google Calendar API, the app allows users to check current and forecasted weather conditions alongside their availability. Based on weather statistics and free days, WeatherNow suggests personalized activities, helping users make the most of their time—whether it’s a sunny outdoor hike or a cozy indoor museum visit. The frontend is built using React.js to ensure a modern, responsive, and smooth user experience across both mobile and desktop devices.
+WeatherNow Calendar Integration is a web-based application designed to simplify free-time planning by combining real-time weather data with the user’s personal calendar schedule. By leveraging the OpenWeatherMap API and the Google Calendar API, the app allows users to check current and forecasted weather conditions alongside their availability. Based on weather statistics and free days, WeatherNow suggests personalized activities—whether it’s a sunny outdoor hike or a cozy indoor museum visit. The frontend is built using React.js to ensure a modern, responsive, and smooth user experience across both mobile and desktop devices.
 
 \subsection{Application Goals}
 \begin{itemize}[nosep]
@@ -76,6 +76,8 @@ WeatherNow Calendar Integration is a web-based application designed to simplify 
   \item \textbf{Families and Groups} organizing weekend outings or vacations dependent on weather.
 \end{itemize}
 
+\newpage
+
 \section{Project Complexity}
 This project exhibits moderate complexity:
 \begin{itemize}[nosep]
@@ -85,8 +87,6 @@ This project exhibits moderate complexity:
   \item \textbf{State Management:} React Context (or Redux) for global state.
   \item \textbf{Responsive Design:} Mobile-first layout with CSS Grid/Flexbox.
 \end{itemize}
-
-%\newpage
 
 \section{Key Features}
 
@@ -113,19 +113,33 @@ This project exhibits moderate complexity:
   \item Push notifications for severe weather or upcoming free days.
 \end{itemize}
 
-%\newpage
+\newpage
 
 \section{User Roles and Interactions}
-\textbf{Primary role:} General user  
-The system shall enable users to:
+
+\subsection{Primary User Role}
+The primary user of the application is the general user—an individual seeking to integrate real-time weather information with their personal calendar to make informed decisions about daily activities. This includes travelers, commuters, students, and outdoor enthusiasts who benefit from location-based and schedule-aware recommendations.
+
+\subsection{Key User Interactions}
 \begin{itemize}[nosep]
-  \item Enter or select a city to view weather and forecast.
-  \item Grant calendar access to retrieve busy/free days.
-  \item Select a date on the calendar to fetch weather and activity suggestions.
-  \item Toggle units (°C/°F) and theme (light/dark).
-  \item Navigate via header/menu to Home, Forecast, and Calendar.
-  \item Receive inline or toast notifications on errors.
+  \item \textbf{Search Weather by City:} Users can input or select a city to view its current weather conditions and forecast.
+  \item \textbf{Grant Calendar Access:} Users may authorize the application to access their Google Calendar in order to detect available time slots.
+  \item \textbf{Select a Calendar Date:} Clicking on a date in the calendar view fetches weather data for that day and displays personalized activity suggestions.
+  \item \textbf{Toggle Display Settings:} Users can switch between temperature units (°C/°F) and choose between light and dark themes for better visual comfort.
+  \item \textbf{Navigate Between Views:} Navigation between the Home, Forecast, and Calendar pages is supported through a fixed header or side menu.
+  \item \textbf{Receive Feedback and Notifications:} The application provides real-time feedback through inline messages or toast notifications in case of input errors, denied permissions, or API issues.
 \end{itemize}
+
+\subsection{Example User Journey}
+\begin{enumerate}[nosep]
+  \item A user opens the application on their mobile browser and allows location access.
+  \item The app fetches and displays the current weather for their location.
+  \item The user searches for an upcoming weekend date on their calendar.
+  \item The app retrieves their availability and weather forecast for that date.
+  \item Based on sunny conditions and free time, the app suggests an outdoor cycling trip.
+  \item The user switches the theme to dark mode for evening browsing and toggles the temperature to Fahrenheit.
+  \item When the user tries an invalid city name, the app shows a helpful toast notification: “City not found. Please try again.”
+\end{enumerate}
 
 \newpage
 
@@ -134,24 +148,29 @@ The system shall enable users to:
 \hline
 \textbf{ID} & \textbf{Title} & \textbf{Description} \\
 \hline
-US1 & Search City & As a user, I enter a city name to view current weather. \\
+US1 & Search City & As a user, I enter a city name to view current weather. This helps me check the weather anywhere in the world quickly and easily. \\
 \hline
-US2 & View Forecast & As a user, I request a five-day forecast to plan ahead. \\
+US2 & View Forecast & As a user, I request a five-day forecast to plan ahead. This allows me to make informed decisions about travel or outdoor activities in the coming days. \\
 \hline
-US3 & Use My Location & As a user, I grant location access to see local weather. \\
+US3 & Use My Location & As a user, I grant location access to see local weather. This saves time and provides accurate data based on my current GPS location. \\
 \hline
-US4 & Select Date & As a user, I click a calendar date to get weather stats and activity suggestions. \\
+US4 & Select Date & As a user, I click a calendar date to get weather stats and activity suggestions. This enables me to plan free-time activities according to the forecast. \\
 \hline
-US5 & Toggle Units & As a user, I switch between Celsius and Fahrenheit. \\
+US5 & Toggle Units & As a user, I switch between Celsius and Fahrenheit. This ensures the app respects my regional preferences or personal comfort with temperature units. \\
 \hline
-US6 & Toggle Theme & As a user, I enable dark mode at night. \\
+US6 & Toggle Theme & As a user, I enable dark mode at night. This reduces eye strain and improves usability in low-light environments. \\
 \hline
-US7 & Handle Error & As a user, I get notified on API failures or invalid input. \\
+US7 & Handle Error & As a user, I get notified on API failures or invalid input. This helps me understand what went wrong and how I can fix it, such as retrying or correcting input. \\
+\hline
+US8 & Recent Searches & As a user, I want to revisit recently searched cities for quick access. This improves efficiency by allowing me to check multiple cities I care about frequently. \\
+\hline
+US9 & Severe Weather Alert & As a user, I want to be notified of severe weather to adjust my plans. This allows me to stay safe and react early to dangerous or disruptive conditions. \\
+\hline
+US10 & Multi-language Support & As a multilingual user, I want to view weather descriptions in my preferred language. This improves accessibility and ensures clarity for non-English users. \\
 \hline
 \end{longtable}
-\end{enumerate}
 
-%\newpage
+\newpage
 
 \section{Non-Functional Requirements}
 \begin{itemize}[nosep]
@@ -164,6 +183,8 @@ US7 & Handle Error & As a user, I get notified on API failures or invalid input.
   \item \textbf{Scalability:} Architecture supports adding new APIs/features with minimal refactoring.
 \end{itemize}
 
+\newpage
+
 \section{Technology Assumptions}
 \begin{itemize}[nosep]
   \item \textbf{Frontend:} React.js (ES6+).
@@ -174,14 +195,18 @@ US7 & Handle Error & As a user, I get notified on API failures or invalid input.
   \item \textbf{Build/Deploy:} Docker multi-stage build; Nginx serves static files.
 \end{itemize}
 
+\newpage
+
 \section{Project Constraints}
 \begin{itemize}[nosep]
-  \item OpenWeatherMap student tier: max 3000 calls/min.
-  \item Google Calendar API quotas and OAuth consent requirements.
-  \item Requires explicit user permission for location/calendar access.
-  \item No custom backend development; all logic in frontend.
-  \item Requirements Document due: April 30, 2025.
+  \item \textbf{OpenWeatherMap API Limit:} The app uses the student tier of OpenWeatherMap, which allows up to 3,000 API calls per minute. Efficient usage and caching are required to stay within this limit.
+  \item \textbf{Google Calendar Quotas \& OAuth:} Calendar integration is subject to Google’s API quotas and OAuth consent requirements. Users must authorize access, and rate limits must be respected.
+  \item \textbf{Permission Dependency:} The app relies on user permission for location and calendar access. If denied, some features (e.g., weather-based suggestions) won’t function and must be handled gracefully.
+  \item \textbf{Frontend-Only Architecture:} No custom backend will be developed. All logic, state management, and API calls are handled in the frontend, which limits secure data handling and processing.
+  \item \textbf{Submission Deadline:} The Requirements Document is due on April 30, 2025, at 23:59, and sets the foundation for all following development phases.
 \end{itemize}
+
+\newpage
 
 \section{Acknowledgement of AI Tools}
 This document was drafted and refined using GPT-4o based on an outline provided by the authors. The authors reviewed and enhanced the output for coherence and alignment with course requirements.
