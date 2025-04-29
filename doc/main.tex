@@ -1,4 +1,4 @@
-\documentclass[13pt,a4paper]{extarticle}
+\documentclass[fontsize=13pt,a4paper]{scrartcl}
 \usepackage[utf8]{inputenc}
 \DeclareUnicodeCharacter{202F}{\,}  % narrow no-break space
 \DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
@@ -113,7 +113,9 @@ This project exhibits moderate complexity:
   \item Push notifications for severe weather or upcoming free days.
 \end{itemize}
 
+
 \newpage
+
 
 \section{User Roles and Interactions}
 
@@ -183,7 +185,7 @@ US10 & Multi-language Support & As a multilingual user, I want to view weather d
   \item \textbf{Scalability:} Architecture supports adding new APIs/features with minimal refactoring.
 \end{itemize}
 
-\newpage
+
 
 \section{Technology Assumptions}
 \begin{itemize}[nosep]
@@ -195,6 +197,7 @@ US10 & Multi-language Support & As a multilingual user, I want to view weather d
   \item \textbf{Build/Deploy:} Docker multi-stage build; Nginx serves static files.
 \end{itemize}
 
+
 \newpage
 
 \section{Project Constraints}
@@ -205,8 +208,6 @@ US10 & Multi-language Support & As a multilingual user, I want to view weather d
   \item \textbf{Frontend-Only Architecture:} No custom backend will be developed. All logic, state management, and API calls are handled in the frontend, which limits secure data handling and processing.
   \item \textbf{Submission Deadline:} The Requirements Document is due on April 30, 2025, at 23:59, and sets the foundation for all following development phases.
 \end{itemize}
-
-\newpage
 
 \section{Acknowledgement of AI Tools}
 This document was drafted and refined using GPT-4o based on an outline provided by the authors. The authors reviewed and enhanced the output for coherence and alignment with course requirements.
