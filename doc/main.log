@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.4.23)  30 APR 2025 10:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.4.23)  30 APR 2025 10:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -645,16 +645,16 @@ See the titlesec package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.125 \subsubsection*{Standard User}
-                                    
+l.125 \subsubsection*{\textbf{Standard User}}
+                                             
 If you (re)set the class of a sectioning command, you may
 you may need to (re)define its format with \titleformat
 
 ! Missing number, treated as zero.
 <to be read again> 
                    }
-l.125 \subsubsection*{Standard User}
-                                    
+l.125 \subsubsection*{\textbf{Standard User}}
+                                             
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -662,8 +662,8 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    }
-l.125 \subsubsection*{Standard User}
-                                    
+l.125 \subsubsection*{\textbf{Standard User}}
+                                             
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -674,8 +674,8 @@ two letters. (See Chapter 27 of The TeXbook.)
 ! Missing number, treated as zero.
 <to be read again> 
                    }
-l.125 \subsubsection*{Standard User}
-                                    
+l.125 \subsubsection*{\textbf{Standard User}}
+                                             
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -683,8 +683,8 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    }
-l.125 \subsubsection*{Standard User}
-                                    
+l.125 \subsubsection*{\textbf{Standard User}}
+                                             
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -699,16 +699,16 @@ See the titlesec package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.136 \subsubsection*{Planner}
-                              
+l.136 \subsubsection*{\textbf{Planner}}
+                                       
 If you (re)set the class of a sectioning command, you may
 you may need to (re)define its format with \titleformat
 
 ! Missing number, treated as zero.
 <to be read again> 
                    }
-l.136 \subsubsection*{Planner}
-                              
+l.136 \subsubsection*{\textbf{Planner}}
+                                       
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -716,8 +716,8 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    }
-l.136 \subsubsection*{Planner}
-                              
+l.136 \subsubsection*{\textbf{Planner}}
+                                       
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -728,8 +728,8 @@ two letters. (See Chapter 27 of The TeXbook.)
 ! Missing number, treated as zero.
 <to be read again> 
                    }
-l.136 \subsubsection*{Planner}
-                              
+l.136 \subsubsection*{\textbf{Planner}}
+                                       
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
@@ -737,8 +737,8 @@ look up `weird error' in the index to The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    }
-l.136 \subsubsection*{Planner}
-                              
+l.136 \subsubsection*{\textbf{Planner}}
+                                       
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -782,7 +782,7 @@ exlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/lm/lmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/lm/lmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt1
 2.pfb>
-Output written on main.pdf (8 pages, 159078 bytes).
+Output written on main.pdf (8 pages, 159080 bytes).
 PDF statistics:
  154 PDF objects out of 1000 (max. 8388607)
  131 compressed objects within 2 object streams
