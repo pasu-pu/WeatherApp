@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1746002025.1041 "main.tex" "main.pdf" "main" 1746002025.58356 2
+["pdflatex"] 1746002220.93172 "main.tex" "main.pdf" "main" 1746002221.42002 2
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc" 1254269338 3031 6c4d3515bf7115d8518af1c9ab97ca44 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm" 1136768653 3584 f80ddd985bd00e29e9a6047ebd9d4781 ""
@@ -95,9 +95,9 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1737590400 40900 887e0dc8cac988a9e9c574af364cf837 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1744753919.9808 306970 c58eaf52156084433b530135e03bec00 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1745413721 6888993 5ca38cdaa4c10bd504860b245efe50c6 ""
-  "main.aux" 1746002025.52444 7343 48ee51ea63d10e51c6441a5f57af11b2 "pdflatex"
-  "main.out" 1746002025.47401 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1746002023.45843 13421 e2f29978a664c1d12654b799421e195e ""
+  "main.aux" 1746002221.35982 7343 48ee51ea63d10e51c6441a5f57af11b2 "pdflatex"
+  "main.out" 1746002221.30899 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1746002218.95277 13419 2d39d40c083b1c52de0ec5a9d7bb8bfb ""
   (generated)
   "main.aux"
   "main.log"
