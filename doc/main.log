@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.4.23)  30 APR 2025 11:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.4.23)  30 APR 2025 11:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -766,6 +766,31 @@ Overfull \hbox (0.8904pt too wide) in paragraph at lines 198--198
 []|\T1/lmr/m/n/13 US11| 
  []
 
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \penalty \@M \futurelet \@let@token \LT@@h...
+l.199 \hline
+            
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+! Misplaced \omit.
+\multispan ->\omit 
+                   \@multispan 
+l.200 \end
+          {longtable}
+I expect to see \omit only after tab marks or the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.200 \end
+          {longtable}
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
 [6] [7] [8] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
@@ -775,8 +800,8 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13295 strings out of 477932
- 234869 string characters out of 5836971
+ 13300 strings out of 477932
+ 234900 string characters out of 5836971
  1868388 words of memory out of 6000000
  33314 multiletter control sequences out of 15000+600000
  554216 words of font info for 56 fonts, out of 8000000 for 9000
@@ -787,10 +812,10 @@ exlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/lm/lmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/lm/lmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt1
 2.pfb>
-Output written on main.pdf (8 pages, 159398 bytes).
+Output written on main.pdf (8 pages, 159715 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
- 129 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
+ 160 PDF objects out of 1000 (max. 8388607)
+ 137 compressed objects within 2 object streams
+ 37 named destinations out of 1000 (max. 500000)
  129 words of extra memory for PDF output out of 10000 (max. 10000000)
 
