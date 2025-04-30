@@ -155,12 +155,15 @@ The Planner role focuses on proactively selecting and scheduling expeditions and
 \subsection{Example User Journey}
 \begin{enumerate}[nosep]
   \item A user opens the application on their mobile browser and allows location access.
-  \item The app fetches and displays the current weather for their location.
-  \item The user chooses between Planner and Standard Mode.
-  \item "[Standard]"The app retrieves their availability and weather forecast for that date.
-  \item Based on sunny conditions and free time, the app suggests an outdoor cycling trip.
+  \item The application fetches and displays the current weather for their location.
   \item The user switches the theme to dark mode for evening browsing and toggles the temperature to Fahrenheit.
   \item When the user tries an invalid city name, the app shows a helpful toast notification: “City not found. Please try again.”
+  \item The user chooses between Planner and Standard Mode.
+  \item [Standard] The application retrieves their availability and weather forecast for that date.
+  \item [Standard] Based on sunny conditions and free time, the app suggests an outdoor cycling trip.
+  \item [Standard] The application shows a relevant split of the users calendar with his preplanned activities for the day.
+  \item [Planner] The application shows a two week calendar preview and presents quick access to weather information on each day.
+  \item [Planner] The user can search for suitable activities based on the location, time and consecutive Wheather.
 \end{enumerate}
 
 \newpage
@@ -170,26 +173,27 @@ The Planner role focuses on proactively selecting and scheduling expeditions and
 \hline
 \textbf{ID} & \textbf{Title} & \textbf{Description} \\
 \hline
-US1 & Search City & As a user, I enter a city name to view current weather. This helps me check the weather anywhere in the world quickly and easily. \\
+US1 & Search City & As a Primary User, I enter a city name to view current weather. This helps me check the weather anywhere in the world quickly and easily. \\
 \hline
-US2 & View Forecast & As a user, I request a five-day forecast to plan ahead. This allows me to make informed decisions about travel or outdoor activities in the coming days. \\
+US2 & View Forecast & As a Planner, I request a five-day forecast to plan ahead. This allows me to make informed decisions about travel or outdoor activities in the coming days. \\
 \hline
-US3 & Use My Location & As a user, I grant location access to see local weather. This saves time and provides accurate data based on my current GPS location. \\
+US3 & Use My Location & As a Primary User, I grant location access to see local weather. This saves time and provides accurate data based on my current GPS location. \\
 \hline
-US4 & Select Date & As a user, I click a calendar date to get weather stats and activity suggestions. This enables me to plan free-time activities according to the forecast. \\
+US4 & Select Date & As a Planner, I click a calendar date to get weather stats and activity suggestions. This enables me to plan free-time activities according to the forecast. \\
 \hline
-US5 & Toggle Units & As a user, I switch between Celsius and Fahrenheit. This ensures the app respects my regional preferences or personal comfort with temperature units. \\
+US5 & Toggle Units & As a Primary User, I switch between Celsius and Fahrenheit. This ensures the app respects my regional preferences or personal comfort with temperature units. \\
 \hline
-US6 & Toggle Theme & As a user, I enable dark mode at night. This reduces eye strain and improves usability in low-light environments. \\
+US6 & Toggle Theme & As a Primary User, I enable dark mode at night. This reduces eye strain and improves usability in low-light environments. \\
 \hline
-US7 & Handle Error & As a user, I get notified on API failures or invalid input. This helps me understand what went wrong and how I can fix it, such as retrying or correcting input. \\
+US7 & Handle Error & As a Primary User, I get notified on API failures or invalid input. This helps me understand what went wrong and how I can fix it, such as retrying or correcting input. \\
 \hline
-US8 & Recent Searches & As a user, I want to revisit recently searched cities for quick access. This improves efficiency by allowing me to check multiple cities I care about frequently. \\
+US8 & Recent Searches & As a Standard User, I want to revisit recently searched cities for quick access. This improves efficiency by allowing me to check multiple cities I care about frequently. \\
 \hline
-US9 & Severe Weather Alert & As a user, I want to be notified of severe weather to adjust my plans. This allows me to stay safe and react early to dangerous or disruptive conditions. \\
+US9 & Severe Weather Alert & As a Primary User, I want to be notified of severe weather to adjust my plans. This allows me to stay safe and react early to dangerous or disruptive conditions. \\
 \hline
-US10 & Multi-language Support & As a multilingual user, I want to view weather descriptions in my preferred language. This improves accessibility and ensures clarity for non-English users. \\
+US10 & Multi-language Support & As a multilingual user, I want to view weather descriptions in my preferred language that is available. This improves accessibility and ensures clarity for non-English users. \\
 \hline
+US11 & Simple Layout & As a Standard User, I want to be presented with a simple layout, that shows me exactly the information relevant at this moment.
 \end{longtable}
 
 \newpage
