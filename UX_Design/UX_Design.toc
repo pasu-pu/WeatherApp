@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {3}Navigation Flow}{5}{section.3}%
 \contentsline {section}{\numberline {4}Design Decisions and Rationale}{5}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Hierarchy and Layout}{5}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Theming and Customization}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Theming and Customization}{6}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Responsive Behavior}{6}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}Error Handling and Accessibility}{6}{subsection.4.4}%
 \contentsline {section}{\numberline {5}Evaluation Against Criteria}{6}{section.5}%
