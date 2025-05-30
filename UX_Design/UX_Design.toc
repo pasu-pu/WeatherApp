@@ -2,16 +2,16 @@
 \contentsline {section}{\numberline {1}Summary of Requirements}{2}{section.1}%
 \contentsline {section}{\numberline {2}User Interface Design}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Home Screen}{2}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Forecast Screen}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Calendar \& Planner Screen}{4}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Navigation Flow}{5}{section.3}%
-\contentsline {section}{\numberline {4}Design Decisions and Rationale}{5}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Hierarchy and Layout}{5}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Theming and Customization}{6}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Responsive Behavior}{6}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Error Handling and Accessibility}{6}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Evaluation Against Criteria}{6}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Clarity and Completeness of the Design}{6}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Consistency and Structure of Navigation}{6}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Visual and Interaction Design Quality}{6}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Connection to Requirements and User Needs}{6}{subsection.5.4}%
+\contentsline {subsection}{\numberline {2.2}Forecast Screen}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Calendar \& Planner Screen}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Mobile View}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Navigation Flow}{4}{section.3}%
+\contentsline {section}{\numberline {4}Design Decisions and Rationale}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Hierarchy and Layout}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Theming and Customization}{4}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Responsive Behavior}{4}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}User Roles/ Use Cases}{5}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Error Handling and Accessibility}{5}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Responsive behaviour and Accessability Considerations}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Responsive Behavior}{6}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Accessibility Considerations}{6}{subsection.5.2}%

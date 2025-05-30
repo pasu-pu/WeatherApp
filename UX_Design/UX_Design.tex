@@ -56,33 +56,9 @@ This section presents mid-fidelity desktop and mobile mockups for the key screen
 \FloatBarrier
 \begin{figure}[H]
   \centering
-  \begin{subfigure}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{home_lightmode.jpeg}
-    \caption{Desktop Light Mode}
-  \end{subfigure}\hfill
-  \begin{subfigure}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{home_darkmode.jpeg}
-    \caption{Desktop Dark Mode}
-  \end{subfigure}
+  \includegraphics[width=\linewidth]{desktop_home_descripted.jpg}
   \caption{Home screen (desktop) with search, theme toggle, and summary of current weather and calendar suggestions.}
   \label{fig:home_desktop}
-\end{figure}
-\FloatBarrier
-
-\subsubsection*{Mobile View}
-\FloatBarrier
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\linewidth}
-    \maxgraph[width=\linewidth]{home_lightmode_mobile.jpg}
-    \caption{Mobile Light Mode}
-  \end{subfigure}\hfill
-  \begin{subfigure}{0.48\linewidth}
-    \maxgraph[width=\linewidth]{home_darkmode_mobile.jpg}
-    \caption{Mobile Dark Mode}
-  \end{subfigure}
-  \caption{Mobile Home screen with vertical stacking, larger touch targets, and simplified header controls.}
-  \label{fig:home_mobile}
 \end{figure}
 \FloatBarrier
 
@@ -90,67 +66,30 @@ This section presents mid-fidelity desktop and mobile mockups for the key screen
 \FloatBarrier
 \begin{figure}[H]
   \centering
-  \begin{subfigure}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{forecast_lightmode.jpeg}
-    \caption{Desktop Light Mode}
-  \end{subfigure}\hfill
-  \begin{subfigure}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{forecast_darkmode.jpeg}
-    \caption{Desktop Dark Mode}
-  \end{subfigure}
+    \includegraphics[width=\linewidth]{desktop_forecast_descripted.jpg}
   \caption{5-day weather forecast (desktop) with interval cards, icons, and summary metric.}
   \label{fig:forecast_desktop}
 \end{figure}
 \FloatBarrier
 
-\subsubsection*{Mobile View}
-\FloatBarrier
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\linewidth}
-    \maxgraph[width=\linewidth]{forecast_lightmode_mobile.jpg}
-    \caption{Mobile Light Mode}
-  \end{subfigure}\hfill
-  \begin{subfigure}{0.48\linewidth}
-    \maxgraph[width=\linewidth]{forecast_darkmode_mobile.jpg}
-    \caption{Mobile Dark Mode}
-  \end{subfigure}
-  \caption{Mobile forecast with full-width stacked cards for each interval, optimized for scrolling.}
-  \label{fig:forecast_mobile}
-\end{figure}
-\FloatBarrier
 
 \subsection{Calendar \& Planner Screen}
 \FloatBarrier
 \begin{figure}[H]
   \centering
-  \begin{subfigure}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{calendar_lightmode.jpeg}
-    \caption{Desktop Light Mode}
-  \end{subfigure}\hfill
-  \begin{subfigure}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{calendar_darkmode.jpeg}
-    \caption{Desktop Dark Mode}
-  \end{subfigure}
+  \includegraphics[width=\linewidth]{desktop_planner_descripted.jpg}
   \caption{Calendar view (desktop) showing selectable dates, event slots, weather overlay, and suggested activities.}
   \label{fig:calendar_desktop}
 \end{figure}
 \FloatBarrier
 
-\subsubsection*{Mobile View}
+\subsection{Mobile View}
 \FloatBarrier
 \begin{figure}[H]
   \centering
-  \begin{subfigure}{0.48\linewidth}
-    \maxgraph[width=\linewidth]{calendar_lightmode_mobile.jpg}
-    \caption{Mobile Light Mode}
-  \end{subfigure}\hfill
-  \begin{subfigure}{0.48\linewidth}
-    \maxgraph[width=\linewidth]{calendar_darkmode_mobile.jpg}
-    \caption{Mobile Dark Mode}
-  \end{subfigure}
-  \caption{Mobile calendar with bottom tab navigation, single-column layout, and compact event display.}
-  \label{fig:calendar_mobile}
+  \includegraphics[width=\linewidth]{mobile_all.jpg}
+  \caption{Showcase of the mobile implementation with adapted layout}
+  \label{fig:calendar_desktop}
 \end{figure}
 \FloatBarrier
 
@@ -158,17 +97,7 @@ This section presents mid-fidelity desktop and mobile mockups for the key screen
 \FloatBarrier
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}[node distance=2.5cm, auto, >=stealth]
-    \tikzstyle{screen}=[rectangle,draw,rounded corners,minimum height=1cm,fill=gray!10]
-    \node[screen] (home){Home};
-    \node[screen,right of=home] (forecast){Forecast};
-    \node[screen,right of=forecast] (calendar){Calendar};
-    \path[->](home)edge[bend left]node[above]{Go to Forecast}(forecast);
-    \path[->](forecast)edge[bend left]node[below]{Back to Home}(home);
-    \path[->](home)edge[bend right]node[below]{Go to Calendar}(calendar);
-    \path[->](calendar)edge[bend right]node[above]{Back to Home}(home);
-    \path[<->,dashed](forecast)edge node[above]{Switch to Planner Mode}(calendar);
-  \end{tikzpicture}
+  \includegraphics[width=\linewidth]{navigation_flow.jpg}
   \caption{User navigation illustrating consistent, intuitive flow between screens.}
   \label{fig:flow}
 \end{figure}
@@ -178,29 +107,42 @@ This section presents mid-fidelity desktop and mobile mockups for the key screen
 This section explains the reasoning behind key UI conventions and patterns chosen to meet user needs and requirements.
 
 \subsection{Hierarchy and Layout}
-We use a clean header with persistent tabs to ensure users can quickly switch between Home, Forecast, and Calendar (addressing clarity and discoverability). Information is grouped within card components for weather summaries, forecast intervals, and calendar events, creating a clear visual hierarchy and supporting glanceable insights.
-
+We use a simple and uncluttered header with persistent tabs. In doing so, we ensure users always have Navigation options visible and can quickly switch between Home, Forecast, and Calendar. We want to have the user locate features easily. Information is grouped within card components for weather summaries, forecast intervals, and calendar events. Important info is easy to see at first glance. We intend that users can quickly understand the information, without needing to read everything in detail, therefore being more appealing for busy Professionals and Students (Target User).
 \subsection{Theming and Customization}
-A light/dark mode toggle respects individual preferences and environmental lighting conditions (enhancing readability and reducing eye strain). The unit switch (°C/\textdegree F) supports regional user expectations, improving usability across different markets.
-
+A light/dark mode toggle respects individual preferences, enhances readability and reduces eye strain. The unit switch (°C/°F) improves usability across different markets and therefore being attractive for example Travelers and Tourists (Target User).
 \subsection{Responsive Behavior}
-Layouts adapt from a two-column desktop view to a single-column mobile view at breakpoints of 768px and 480px. On mobile, cards are full-width with increased touch target sizes (minimum 44×44px), and navigation shifts to a bottom tab bar for ergonomic access.
+Layouts adapt from a two-column desktop view to a single-column mobile view at breakpoints of 768px and 480px. On mobile, cards are full-width with increased button/input field sizes (minimum 44×44px).
+
+\newpage
+
+\subsection{User Roles/ Use Cases}
+This section explains how our design decisions reflect the User Roles and their Use Cases defined in our Requirements Document
+
+\begin{itemize}
+  \item US1 Search City: By having the search bar directly easily accessible on the home screen a primary user can quickly enter the desired city and therefore can change between cities with no hassle.
+  \item US2 View Forecast: Due to the importance of the forecast to a planner user it has gotten an entire separate tab, which is always accessible from anywhere in the app. Our implementation makes it easy to get an overview of the following days weather to make informed decisions.
+  \item US3 grant location access: Like the search bar, the option to grant location access is directly visible in the home tab next(desktop) or below(mobile) the search field. Therefore the action described by the use case is extremely fast, which was a requirement in its implementation.
+  \item US4 select date: This Planner use case has been implemented through the calendar integration in the Planner tab. In this section of the website, the user gets information regarding weather, activities and already planned appointments based on the selected date.
+  \item US5 toggle Units: This functionality is implemented in the header of the website/mobil app where it is instantly recognizeable and reachable.
+  \item US6 toggle theme: Same as the toggle Units button is it easily reachable in the header of the application regardless of the platform.
+  \item US7 handle errors:
+  \item US8 recent searches: Changing the city to an earlier one is integrated into the search bar itself. when interacting with it, it shows a drop down list with recently input cities and filters these based on the input until now.
+  \item US9 severe weather alerts: Warning of severe weather is included in the weather views of both the home and forecast tabs.
+  \item US10 multi-language support:
+  \item US11 simple layout: This is achieved by splitting the functions into three tabs that each fulfill their given purpose. The home tab as the default tab upon startupacts as a site to quickly get the info for the current situation, the forecast tab as a reference for future planning and the planner tab as a planning screen, that allows structuring ones activities in a simple yet adequate layout.
+\end{itemize}
 
 \subsection{Error Handling and Accessibility}
-Inline alerts and toast notifications provide immediate feedback for invalid city inputs or API issues, maintaining user trust. All interactive elements include ARIA labels and logical tabindex ordering, ensuring operability via assistive technologies and keyboard navigation. Color contrast ratios exceed WCAG 2.1 AA thresholds for readability.
+When someone enters a city name wrong, or if there’s a problem with the API, a message pops up right away—either as an alert in the page or as a small notification (toast). This helps users know what’s happening and keeps them confident in the app. All buttons and interactive parts have labels that work with screen readers, and everything can be used with a keyboard. The order of tab through the elements also makes sense. The color choices make sure text is easy to read, following accessibility guidelines.
 
-\section{Evaluation Against Criteria}
-\subsection{Clarity and Completeness of the Design}
-Each screen is presented with labeled visuals and accompanied by descriptive captions and explanatory text. The Home, Forecast, and Calendar views are understandable in isolation and in context, illustrating all core functionalities.
+\section{Responsive behaviour and Accessability Considerations}
+The WeatherNow application is built with responsive and accessible design principles for an intuitive experience across devices and for all.
 
-\subsection{Consistency and Structure of Navigation}
-The navigation diagram (Fig.~\ref{fig:flow}) shows a consistent, intuitive flow. Primary tabs remain in a fixed header on desktop and a bottom bar on mobile, reinforcing user goals and minimizing cognitive load.
+\subsection{Responsive Behavior}
+The layout adapts dynamically at key breakpoints (e.g., 768px) as it transitions from multi-column desktop displays to stacked mobile displays. For instance, the calendar reorders from a side-by-side grid to a stacked display, and forecast cards resize to fit smaller screens with fluid grids. Touch targets like tabs and buttons are enlarged on mobile for better usability, and header elements reorganize to maintain clarity and navigation.
 
-\subsection{Visual and Interaction Design Quality}
-Cards, whitespace, and typography have been used to emphasize content hierarchy. Established UI patterns (tabs, cards, toggles) ensure familiarity. Interaction elements are clearly indicated with bold buttons and icons, providing affordances for user actions.
-
-\subsection{Connection to Requirements and User Needs}
-Design rationale sections map directly to user stories and requirements: theme toggles satisfy preference needs (US6), calendar integration addresses scheduling stories, and errors are handled per US7. Recommendations panels link weather data to actionable items, reflecting user-centric functionality.
+\subsection{Accessibility Considerations}
+Accessibility is supported by keyboard-navigable controls, high-contrast dark and light themes, and semantic HTML tags. Visual feedback (such as loading spinners and notifications), clear focus states, and logical tab flow keep users informed about system states. While ARIA roles can be added on top, the current structure already supports compatibility with screen readers and assistive software.
 
 \section*{Acknowledgement of AI Technologies}
 This document was drafted and refined using GPT-4o based on outlines and reviewed by all authors.

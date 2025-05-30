@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.4.23)  29 MAY 2025 14:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.4.23)  30 MAY 2025 20:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -437,7 +437,11 @@ Package: placeins 2005/04/18  v 2.2
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count304
 \l__pdf_internal_box=\box65
-) (./UX_Design.aux)
+) (./UX_Design.aux
+
+LaTeX Warning: Label `fig:calendar_desktop' multiply defined.
+
+)
 \openout1 = `UX_Design.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
@@ -537,85 +541,52 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-<home_lightmode.jpeg, id=103, 1761.58125pt x 1422.31375pt>
-File: home_lightmode.jpeg Graphic file (type jpg)
-<use home_lightmode.jpeg>
-Package pdftex.def Info: home_lightmode.jpeg  used on input line 60.
-(pdftex.def)             Requested size: 218.51521pt x 176.42151pt.
-<home_darkmode.jpeg, id=104, 1761.58125pt x 1422.31375pt>
-File: home_darkmode.jpeg Graphic file (type jpg)
-<use home_darkmode.jpeg>
-Package pdftex.def Info: home_darkmode.jpeg  used on input line 64.
-(pdftex.def)             Requested size: 218.51521pt x 176.42151pt.
-<home_lightmode_mobile.jpg, id=105, 751.80875pt x 4175.6pt>
-File: home_lightmode_mobile.jpg Graphic file (type jpg)
-<use home_lightmode_mobile.jpg>
-Package pdftex.def Info: home_lightmode_mobile.jpg  used on input line 77.
-(pdftex.def)             Requested size: 50.61298pt x 281.10812pt.
-<home_darkmode_mobile.jpg, id=106, 752.8125pt x 4175.6pt>
-File: home_darkmode_mobile.jpg Graphic file (type jpg)
-<use home_darkmode_mobile.jpg>
-Package pdftex.def Info: home_darkmode_mobile.jpg  used on input line 81.
-(pdftex.def)             Requested size: 50.68054pt x 281.10812pt.
- [2{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./home_lightmode.jpeg> <./home_darkmode.jpeg>]
-<forecast_lightmode.jpeg, id=115, 1761.58125pt x 1253.68375pt>
-File: forecast_lightmode.jpeg Graphic file (type jpg)
-<use forecast_lightmode.jpeg>
-Package pdftex.def Info: forecast_lightmode.jpeg  used on input line 94.
-(pdftex.def)             Requested size: 218.51521pt x 155.50491pt.
-<forecast_darkmode.jpeg, id=116, 1761.58125pt x 1253.68375pt>
-File: forecast_darkmode.jpeg Graphic file (type jpg)
-<use forecast_darkmode.jpeg>
-Package pdftex.def Info: forecast_darkmode.jpeg  used on input line 98.
-(pdftex.def)             Requested size: 218.51521pt x 155.50491pt.
-<forecast_lightmode_mobile.jpg, id=117, 788.9475pt x 3262.1875pt>
-File: forecast_lightmode_mobile.jpg Graphic file (type jpg)
-<use forecast_lightmode_mobile.jpg>
-Package pdftex.def Info: forecast_lightmode_mobile.jpg  used on input line 111.
-(pdftex.def)             Requested size: 67.98058pt x 281.09021pt.
-<forecast_darkmode_mobile.jpg, id=118, 788.9475pt x 3262.1875pt>
-File: forecast_darkmode_mobile.jpg Graphic file (type jpg)
-<use forecast_darkmode_mobile.jpg>
-Package pdftex.def Info: forecast_darkmode_mobile.jpg  used on input line 115.
-(pdftex.def)             Requested size: 67.98058pt x 281.09021pt.
- [3 <./home_lightmode_mobile.jpg> <./home_darkmode_mobile.jpg> <./forecast_lightmode.jpeg> <./forecast_darkmode.jpeg>]
-<calendar_lightmode.jpeg, id=126, 1761.58125pt x 1517.67pt>
-File: calendar_lightmode.jpeg Graphic file (type jpg)
-<use calendar_lightmode.jpeg>
-Package pdftex.def Info: calendar_lightmode.jpeg  used on input line 128.
-(pdftex.def)             Requested size: 218.51521pt x 188.24934pt.
-<calendar_darkmode.jpeg, id=127, 1761.58125pt x 1517.67pt>
-File: calendar_darkmode.jpeg Graphic file (type jpg)
-<use calendar_darkmode.jpeg>
-Package pdftex.def Info: calendar_darkmode.jpeg  used on input line 132.
-(pdftex.def)             Requested size: 218.51521pt x 188.24934pt.
-<calendar_lightmode_mobile.jpg, id=128, 788.9475pt x 4063.18pt>
-File: calendar_lightmode_mobile.jpg Graphic file (type jpg)
-<use calendar_lightmode_mobile.jpg>
-Package pdftex.def Info: calendar_lightmode_mobile.jpg  used on input line 145.
-(pdftex.def)             Requested size: 54.5819pt x 281.10371pt.
-<calendar_darkmode_mobile.jpg, id=129, 788.9475pt x 4063.18pt>
-File: calendar_darkmode_mobile.jpg Graphic file (type jpg)
-<use calendar_darkmode_mobile.jpg>
-Package pdftex.def Info: calendar_darkmode_mobile.jpg  used on input line 149.
-(pdftex.def)             Requested size: 54.5819pt x 281.10371pt.
- [4 <./forecast_lightmode_mobile.jpg> <./forecast_darkmode_mobile.jpg> <./calendar_lightmode.jpeg> <./calendar_darkmode.jpeg>] [5 <./calendar_lightmode_mobile.jpg> <./calendar_darkmode_mobile.jpg>] [6] (./UX_Design.aux)
+<desktop_home_descripted.jpg, id=103, 937.5828pt x 279.9258pt>
+File: desktop_home_descripted.jpg Graphic file (type jpg)
+<use desktop_home_descripted.jpg>
+Package pdftex.def Info: desktop_home_descripted.jpg  used on input line 59.
+(pdftex.def)             Requested size: 455.24411pt x 135.9176pt.
+<desktop_forecast_descripted.jpg, id=104, 937.5828pt x 279.9258pt>
+File: desktop_forecast_descripted.jpg Graphic file (type jpg)
+<use desktop_forecast_descripted.jpg>
+Package pdftex.def Info: desktop_forecast_descripted.jpg  used on input line 69.
+(pdftex.def)             Requested size: 455.24411pt x 135.9176pt.
+<desktop_planner_descripted.jpg, id=105, 937.5828pt x 279.9258pt>
+File: desktop_planner_descripted.jpg Graphic file (type jpg)
+<use desktop_planner_descripted.jpg>
+Package pdftex.def Info: desktop_planner_descripted.jpg  used on input line 80.
+(pdftex.def)             Requested size: 455.24411pt x 135.9176pt.
+ [2{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./desktop_home_descripted.jpg> <./desktop_forecast_descripted.jpg>]
+<mobile_all.jpg, id=114, 1334.1042pt x 952.5186pt>
+File: mobile_all.jpg Graphic file (type jpg)
+<use mobile_all.jpg>
+Package pdftex.def Info: mobile_all.jpg  used on input line 90.
+(pdftex.def)             Requested size: 455.24411pt x 325.02931pt.
+<navigation_flow.jpg, id=115, 1314.9125pt x 590.205pt>
+File: navigation_flow.jpg Graphic file (type jpg)
+<use navigation_flow.jpg>
+Package pdftex.def Info: navigation_flow.jpg  used on input line 100.
+(pdftex.def)             Requested size: 455.24411pt x 204.3324pt.
+ [3 <./desktop_planner_descripted.jpg> <./mobile_all.jpg>] [4 <./navigation_flow.jpg>] [5] [6] (./UX_Design.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `UX_Design.out' has not changed.
-(rerunfilecheck)             Checksum: 2CED2D866BE8F8ECA0BEC62BFDA50A1A;3065.
+(rerunfilecheck)             Checksum: 7A3F601A904F47A86E753234989A0FEE;2785.
  ) 
 Here is how much of TeX's memory you used:
- 22751 strings out of 477932
- 428408 string characters out of 5836971
+ 22550 strings out of 477932
+ 423795 string characters out of 5836971
  1862388 words of memory out of 6000000
- 42565 multiletter control sequences out of 15000+600000
- 522446 words of font info for 53 fonts, out of 8000000 for 9000
+ 42378 multiletter control sequences out of 15000+600000
+ 521683 words of font info for 52 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 84i,12n,89p,583b,979s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on UX_Design.pdf (6 pages, 1706555 bytes).
+ 84i,12n,89p,682b,446s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on UX_Design.pdf (6 pages, 4859455 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 157 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 175 PDF objects out of 1000 (max. 8388607)
+ 147 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 166 words of extra memory for PDF output out of 10000 (max. 10000000)
 
