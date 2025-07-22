@@ -3,7 +3,7 @@
 import { useState } from "react"
 import "./Calendar.css"
 
-function Calendar({ selectedDate, onDateSelect }) {
+function Calendar({ selectedDate, onDateSelect, events = {} }) {
   const [currentMonth, setCurrentMonth] = useState(new Date())
 
   const getDaysInMonth = (date) => {
@@ -58,6 +58,12 @@ function Calendar({ selectedDate, onDateSelect }) {
     return dayDate.toDateString() === today.toDateString()
   }
 
+  const hasEvents = (day) => {
+    if (!day) return false
+    const dayDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day).toDateString()
+    return events[dayDate] && events[dayDate].length > 0
+  }
+
   const days = generateCalendarDays()
 
   return (
@@ -91,10 +97,11 @@ function Calendar({ selectedDate, onDateSelect }) {
             key={index}
             className={`calendar-day ${day ? "clickable" : "empty"} ${
               isSelectedDate(day) ? "selected" : ""
-            } ${isToday(day) ? "today" : ""}`}
+            } ${isToday(day) ? "today" : ""} ${hasEvents(day) ? "has-events" : ""}`}
             onClick={() => handleDayClick(day)}
           >
             {day}
+            {hasEvents(day) && <div className="event-indicator"></div>}
           </div>
         ))}
       </div>

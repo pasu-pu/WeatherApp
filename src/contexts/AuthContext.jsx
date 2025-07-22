@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
     }
   }
 
-  const register = async (email, password, confirmPassword) => {
+  const register = async (email, password, confirmPassword, name) => {
     try {
       if (password !== confirmPassword) {
         return { success: false, error: "Passwords do not match" }
@@ -58,7 +58,8 @@ export function AuthProvider({ children }) {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      const userData = { email, name: email.split("@")[0] }
+      const displayName = name || email.split("@")[0]
+      const userData = { email, name: displayName }
       const token = "mock_jwt_token_" + Date.now()
 
       localStorage.setItem("weathernow_token", token)

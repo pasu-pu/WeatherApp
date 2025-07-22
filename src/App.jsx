@@ -5,10 +5,12 @@ import Register from "./components/Auth/Register"
 import Home from "./components/Home/Home"
 import Forecast from "./components/Forecast/Forecast"
 import Planner from "./components/Planner/Planner"
+import Profile from "./components/Profile/Profile"
 import Navbar from "./components/Layout/Navbar"
 import { AuthProvider, useAuth } from "./contexts/AuthContext"
 import { ThemeProvider } from "./contexts/ThemeContext"
 import { WeatherProvider } from "./contexts/WeatherContext"
+import { CalendarProvider } from "./contexts/CalendarContext"
 import "./App.css"
 
 function ProtectedRoute({ children }) {
@@ -50,6 +52,14 @@ function AppContent() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </main>
@@ -63,7 +73,9 @@ function App() {
       <AuthProvider>
         <ThemeProvider>
           <WeatherProvider>
-            <AppContent />
+            <CalendarProvider>
+              <AppContent />
+            </CalendarProvider>
           </WeatherProvider>
         </ThemeProvider>
       </AuthProvider>

@@ -115,3 +115,26 @@
     font-size: 10px;
   }
 }
+
+.calendar-day.has-events {
+  position: relative;
+}
+
+.event-indicator {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+}
+
+.calendar-day.selected .event-indicator {
+  background: white;
+}
+
+.calendar-day.today .event-indicator {
+  background: white;
+}

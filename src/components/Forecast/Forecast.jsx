@@ -11,7 +11,7 @@ import "./Forecast.css"
 
 function Forecast() {
   const { forecast, loading, error, fetchForecast, currentWeather } = useWeather()
-  const { units } = useTheme()
+  const { units, translate } = useTheme()
   const [toast, setToast] = useState(null)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Forecast() {
   const handleCitySearch = async (city) => {
     try {
       await fetchForecast(city)
-      setToast({ type: "success", message: `5-day forecast loaded for ${city}` })
+      setToast({ type: "success", message: `${translate("fiveDayForecast")} loaded for ${city}` })
     } catch (err) {
       setToast({ type: "error", message: err.message })
     }
@@ -49,8 +49,8 @@ function Forecast() {
   return (
     <div className="forecast-container">
       <div className="forecast-header">
-        <h1>5-Day Weather Forecast</h1>
-        <p>Detailed weather predictions for the next 5 days</p>
+        <h1>{translate("fiveDayForecast")}</h1>
+        <p>{translate("detailedPredictions")}</p>
       </div>
 
       <div className="forecast-search">
@@ -72,7 +72,7 @@ function Forecast() {
               <div key={date} className="forecast-day">
                 <h3 className="day-header">
                   {index === 0
-                    ? "Today"
+                    ? translate("today")
                     : new Date(date).toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" })}
                 </h3>
                 <div className="day-forecast">

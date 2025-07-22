@@ -13,7 +13,7 @@ import "./Home.css"
 
 function Home() {
   const { currentWeather, loading, error, fetchWeatherByCity, fetchWeatherByCoords } = useWeather()
-  const { units } = useTheme()
+  const { units, translate } = useTheme()
   const [toast, setToast] = useState(null)
   const [locationLoading, setLocationLoading] = useState(false)
 
@@ -63,8 +63,8 @@ function Home() {
   return (
     <div className="home-container">
       <div className="home-header">
-        <h1>Welcome to WeatherNow</h1>
-        <p>Plan your activities with weather and calendar integration</p>
+        <h1>{translate("welcome")}</h1>
+        <p>{translate("planActivities")}</p>
       </div>
 
       <div className="search-section">

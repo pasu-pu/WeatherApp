@@ -12,6 +12,60 @@ export function useTheme() {
   return context
 }
 
+// Translation dictionary
+const translations = {
+  en: {
+    welcome: "Welcome to WeatherNow",
+    planActivities: "Plan your activities with weather and calendar integration",
+    todaysSchedule: "Today's Schedule",
+    weatherForecast: "Weather Forecast",
+    suggestedActivities: "Suggested Activities",
+    connectCalendar: "Connect Calendar",
+    addToCalendar: "Add to Calendar",
+    noEvents: "No events scheduled",
+    loading: "Loading...",
+    freeTime: "free time",
+    allDay: "All day",
+    visitCafe: "Visit a cozy café",
+    watchMovie: "Watch a movie",
+    readLibrary: "Read at the library",
+    visitMuseum: "Visit a museum",
+    goCycling: "Go cycling",
+    outdoorJogging: "Outdoor jogging",
+    walkPark: "Walk in the park",
+    beachActivities: "Beach activities",
+    shoppingMall: "Shopping mall visit",
+    indoorActivities: "Indoor activities",
+    cafeHopping: "Café hopping",
+    gamingSession: "Gaming session",
+  },
+  de: {
+    welcome: "Willkommen bei WeatherNow",
+    planActivities: "Planen Sie Ihre Aktivitäten mit Wetter- und Kalenderintegration",
+    todaysSchedule: "Heutiger Zeitplan",
+    weatherForecast: "Wettervorhersage",
+    suggestedActivities: "Vorgeschlagene Aktivitäten",
+    connectCalendar: "Kalender verbinden",
+    addToCalendar: "Zum Kalender hinzufügen",
+    noEvents: "Keine Termine geplant",
+    loading: "Laden...",
+    freeTime: "freie Zeit",
+    allDay: "Ganztägig",
+    visitCafe: "Ein gemütliches Café besuchen",
+    watchMovie: "Einen Film schauen",
+    readLibrary: "In der Bibliothek lesen",
+    visitMuseum: "Ein Museum besuchen",
+    goCycling: "Radfahren gehen",
+    outdoorJogging: "Joggen im Freien",
+    walkPark: "Im Park spazieren",
+    beachActivities: "Strandaktivitäten",
+    shoppingMall: "Einkaufszentrum besuchen",
+    indoorActivities: "Indoor-Aktivitäten",
+    cafeHopping: "Café-Hopping",
+    gamingSession: "Gaming-Session",
+  },
+}
+
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light")
   const [units, setUnits] = useState("celsius")
@@ -48,6 +102,10 @@ export function ThemeProvider({ children }) {
     localStorage.setItem("weathernow_language", newLanguage)
   }
 
+  const translate = (key) => {
+    return translations[language]?.[key] || translations.en[key] || key
+  }
+
   const value = {
     theme,
     units,
@@ -55,6 +113,7 @@ export function ThemeProvider({ children }) {
     toggleTheme,
     toggleUnits,
     toggleLanguage,
+    translate,
   }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

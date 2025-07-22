@@ -2,14 +2,19 @@
 import { Link, useLocation } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 import { useTheme } from "../../contexts/ThemeContext"
+import { useCalendar } from "../../contexts/CalendarContext"
 import "./Navbar.css"
 
 function Navbar() {
   const { logout, user } = useAuth()
   const { theme, units, language, toggleTheme, toggleUnits, toggleLanguage } = useTheme()
+  const { isAuthorized, authorizeCalendar, signOutFromCalendar } = useCalendar()
   const location = useLocation()
 
   const handleLogout = () => {
+    if (isAuthorized) {
+      signOutFromCalendar()
+    }
     logout()
   }
 
@@ -28,6 +33,9 @@ function Navbar() {
         </Link>
         <Link to="/planner" className={`nav-link ${location.pathname === "/planner" ? "active" : ""}`}>
           Planner
+        </Link>
+        <Link to="/profile" className={`nav-link ${location.pathname === "/profile" ? "active" : ""}`}>
+          Profile
         </Link>
       </div>
 
