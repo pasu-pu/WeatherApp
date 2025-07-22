@@ -1,0 +1,139 @@
+.weather-card {
+  background: var(--gradient-weather);
+  color: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow-large);
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+.weather-header {
+  margin-bottom: 24px;
+}
+
+.weather-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.weather-icon {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.temperature {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.temp-value {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.temp-unit {
+  font-size: 24px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.weather-description {
+  margin-bottom: 24px;
+}
+
+.weather-description p {
+  font-size: 16px;
+  opacity: 0.9;
+  text-transform: capitalize;
+}
+
+.weather-description p:first-child {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+}
+
+.detail-label {
+  font-size: 12px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .weather-card {
+    padding: 24px;
+  }
+
+  .weather-main {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .weather-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .temp-value {
+    font-size: 48px;
+  }
+
+  .temp-unit {
+    font-size: 18px;
+  }
+
+  .weather-details {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .detail-item {
+    padding: 8px;
+  }
+}

@@ -1,0 +1,100 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { useWeather } from "../../contexts/WeatherContext"
+import { useTheme } from "../../contexts/ThemeContext"
+import WeatherCard from "../Weather/WeatherCard"
+import SearchBar from "../Weather/SearchBar"
+import CalendarSummary from "../Calendar/CalendarSummary"
+import ActivitySuggestions from "../Activities/ActivitySuggestions"
+import Toast from "../UI/Toast"
+import LoadingSpinner from "../UI/LoadingSpinner"
+import "./Home.css"
+
+function Home() {
+  const { currentWeather, loading, error, fetchWeatherByCity, fetchWeatherByCoords } = useWeather()
+  const { units } = useTheme()
+  const [toast, setToast] = useState(null)
+  const [locationLoading, setLocationLoading] = useState(false)
+
+  useEffect(() => {
+    // Try to get user's location on component mount
+    if (!currentWeather) {
+      handleUseLocation()
+    }
+  }, [])
+
+  const handleCitySearch = async (city) => {
+    try {
+      await fetchWeatherByCity(city)
+      setToast({ type: "success", message: `Weather loaded for ${city}` })
+    } catch (err) {
+      setToast({ type: "error", message: err.message })
+    }
+  }
+
+  const handleUseLocation = async () => {
+    setLocationLoading(true)
+
+    if (!navigator.geolocation) {
+      setToast({ type: "error", message: "Geolocation is not supported by this browser" })
+      setLocationLoading(false)
+      return
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          await fetchWeatherByCoords(position.coords.latitude, position.coords.longitude)
+          setToast({ type: "success", message: "Weather loaded for your location" })
+        } catch (err) {
+          setToast({ type: "error", message: "Failed to get weather for your location" })
+        } finally {
+          setLocationLoading(false)
+        }
+      },
+      (error) => {
+        setToast({ type: "error", message: "Location access denied" })
+        setLocationLoading(false)
+      },
+    )
+  }
+
+  return (
+    <div className="home-container">
+      <div className="home-header">
+        <h1>Welcome to WeatherNow</h1>
+        <p>Plan your activities with weather and calendar integration</p>
+      </div>
+
+      <div className="search-section">
+        <SearchBar onSearch={handleCitySearch} />
+        <button className="location-button" onClick={handleUseLocation} disabled={locationLoading}>
+          {locationLoading ? "Getting location..." : "📍 Use My Location"}
+        </button>
+      </div>
+
+      {loading && <LoadingSpinner />}
+
+      {currentWeather && (
+        <div className="home-content">
+          <div className="weather-section">
+            <WeatherCard weather={currentWeather} units={units} />
+          </div>
+
+          <div className="calendar-section">
+            <CalendarSummary />
+          </div>
+
+          <div className="suggestions-section">
+            <ActivitySuggestions weather={currentWeather} />
+          </div>
+        </div>
+      )}
+
+      {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
+    </div>
+  )
+}
+
+export default Home
