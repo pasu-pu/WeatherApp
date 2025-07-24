@@ -13,7 +13,6 @@ import "./Planner.css"
 
 function Planner() {
   const [selectedDate, setSelectedDate] = useState(new Date())
-  const [selectedDateWeather, setSelectedDateWeather] = useState(null)
   const [showAddEventModal, setShowAddEventModal] = useState(false)
   const [selectedActivity, setSelectedActivity] = useState(null)
   const [toast, setToast] = useState(null)
@@ -44,17 +43,6 @@ function Planner() {
     }
     loadMonthEvents()
   }, [selectedDate, isInitialized, isAuthorized, fetchEventsForMonth])
-
-  useEffect(() => {
-    if (currentWeather) {
-      setSelectedDateWeather({
-        temp: currentWeather.main.temp,
-        condition: currentWeather.weather[0].main.toLowerCase(),
-        description: currentWeather.weather[0].description,
-        icon: currentWeather.weather[0].icon,
-      })
-    }
-  }, [currentWeather])
 
   const handleDateSelect = (date) => setSelectedDate(date)
 
@@ -105,12 +93,21 @@ function Planner() {
               })}
             </h2>
           </div>
-          {selectedDateWeather && <WeatherOverlay weather={selectedDateWeather} />}
+          {currentWeather && (
+            <WeatherOverlay weather={{
+              temp: currentWeather.main.temp,
+              condition: currentWeather.weather[0].main.toLowerCase(),
+              description: currentWeather.weather[0].description,
+              icon: currentWeather.weather[0].icon,
+              city: currentWeather.name,
+              country: currentWeather.sys.country
+            }} />
+          )}
           <EventsList date={selectedDate} />
 
           <div className="activity-suggestions">
             <ActivitySuggestions
-              weather={selectedDateWeather}
+              weather={currentWeather}
               selectedDate={selectedDate}
               onActivitySelected={handleActivitySelected}
             />
