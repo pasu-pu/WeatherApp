@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import ActivityModal from "./ActivityModal"
+import "./ActivitySuggestions.css"
 
 function ActivitySuggestions({ weather, selectedDate, onActivitySelected }) {
   const [modalOpen, setModalOpen] = useState(false)
@@ -12,39 +13,48 @@ function ActivitySuggestions({ weather, selectedDate, onActivitySelected }) {
     setLoading(true)
     setError(null)
     setAiSuggestions([])
-    // Prompt dynamisch bauen aus Wetter und Datum
     const dateString = selectedDate
-      ? selectedDate.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
+      ? selectedDate.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
       : ""
     const weatherDesc = weather
-      ? `${weather.temp ? `Temperature: ${weather.temp}°C, ` : ""}${weather.condition || weather.description || ""}`
+      ? `${weather.temp ? `Temperature: ${weather.temp}°C, ` : ""}${
+          weather.condition || weather.description || ""
+        }`
       : ""
     const prompt = `Suggest 5 activities for this day in Germany: ${dateString}, Weather: ${weatherDesc}.
 Respond as a JSON array: [{"icon":"[emoji]","title":"[short description]"}].
 Start every "title" with a capital letter. 
 Use different, suitable emojis as icons. 
-Only return the JSON array, nothing else.`;
+Only return the JSON array, nothing else.`
 
     try {
       const response = await fetch("http://localhost:4000/api/gemini", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt })
+        body: JSON.stringify({ prompt }),
       })
       const data = await response.json()
-      console.log("Gemini-RAW-Response:", data?.candidates?.[0]?.content?.parts?.[0]?.text)
-      // Versuche, ein JSON-Array aus der Antwort zu parsen
+      console.log(
+        "Gemini-RAW-Response:",
+        data?.candidates?.[0]?.content?.parts?.[0]?.text
+      )
       let suggestions = []
       try {
-        // Hole nur das erste Array aus der Antwort
-        const match = data?.candidates?.[0]?.content?.parts?.[0]?.text.match(/\[.*\]/s)
+        const match = data?.candidates?.[0]?.content?.parts?.[0]?.text.match(
+          /\[.*\]/s
+        )
         suggestions = match ? JSON.parse(match[0]) : []
-      } catch (e) {
+      } catch {
         suggestions = []
       }
       setAiSuggestions(suggestions)
       if (suggestions.length === 0) setError("No AI suggestions received.")
-    } catch (e) {
+    } catch {
       setError("Could not fetch AI suggestions.")
       setAiSuggestions([])
     }
@@ -59,14 +69,22 @@ Only return the JSON array, nothing else.`;
 
   return (
     <div>
-      <h3 style={{ marginBottom: "16px", color: "var(--text-primary)" }}>💡 Activity Suggestions</h3>
-      <button onClick={getAiSuggestions} disabled={loading} style={{ marginBottom: "12px" }}>
+      <h3 style={{ marginBottom: "16px", color: "var(--text-primary)" }}>
+        💡 Activity Suggestions
+      </h3>
+      <button
+        className="ai-btn"
+        onClick={getAiSuggestions}
+        disabled={loading}
+      >
         {loading ? "Loading..." : "Get AI Suggestions"}
       </button>
-      {error && <div style={{ color: "red", marginBottom: "8px" }}>{error}</div>}
+      {error && (
+        <div style={{ color: "red", marginBottom: "8px" }}>{error}</div>
+      )}
 
       <div>
-        {(aiSuggestions.length > 0 ? aiSuggestions : []).map((suggestion, index) => (
+        {aiSuggestions.map((suggestion, index) => (
           <div
             key={index}
             style={{
@@ -79,14 +97,23 @@ Only return the JSON array, nothing else.`;
               transition: "all 0.2s ease",
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center"
+              alignItems: "center",
             }}
-            onMouseEnter={e => (e.currentTarget.style.background = "var(--bg-secondary)")}
-            onMouseLeave={e => (e.currentTarget.style.background = "var(--bg-tertiary)")}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = "var(--bg-secondary)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--bg-tertiary)")
+            }
             onClick={() => handleActivityClick(suggestion)}
           >
-            <span>{suggestion.icon ? suggestion.icon + " " : ""}{suggestion.title || suggestion}</span>
-            <span style={{ fontSize: "12px", opacity: "0.7" }}>Click to add →</span>
+            <span>
+              {suggestion.icon ? suggestion.icon + " " : ""}
+              {suggestion.title || suggestion}
+            </span>
+            <span style={{ fontSize: "12px", opacity: "0.7" }}>
+              Click to add →
+            </span>
           </div>
         ))}
       </div>

@@ -1,0 +1,22 @@
+/* ActivitySuggestions.css - minimal styling for AI suggestions button */
+
+.ai-btn {
+  padding: 8px 16px;
+  background: var(--gradient-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.ai-btn:hover:not(:disabled) {
+  background: var(--gradient-secondary);
+}
+
+.ai-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
