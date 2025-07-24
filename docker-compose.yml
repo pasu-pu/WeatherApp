@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile_Frontend # Dein Frontend-Dockerfile!
+    ports:
+      - "3000:80"  # oder wie du es bisher hast
+
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile_Proxy
+    ports:
+      - "4000:4000"
+    environment:
+      - GEMINI_API_KEY=AIzaSyCvCr2P_XFkMG4iVAIQTlUWGfXndN8ktUc
