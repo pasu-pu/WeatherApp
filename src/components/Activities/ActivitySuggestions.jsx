@@ -12,18 +12,32 @@ function ActivitySuggestions({ weather, selectedDate, onActivitySelected }) {
     setLoading(true)
     setError(null)
     setAiSuggestions([])
-    // Prompt dynamisch bauen aus Wetter und Datum
+
+    // Ort aus den Wetterdaten holen
+    const city = weather?.name || "your city"
+    const country = weather?.sys?.country || ""
+    const locationString = `${city}${country ? ", " + country : ""}`
+
+    // Wetterbeschreibung wie gehabt
     const dateString = selectedDate
-      ? selectedDate.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
+      ? selectedDate.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        })
       : ""
+
     const weatherDesc = weather
       ? `${weather.temp ? `Temperature: ${weather.temp}°C, ` : ""}${weather.condition || weather.description || ""}`
       : ""
-    const prompt = `Suggest 5 activities for this day in Germany: ${dateString}, Weather: ${weatherDesc}.
+
+    // Prompt jetzt dynamisch mit Ort!
+    const prompt = `Suggest 5 activities for this day in ${locationString}: ${dateString}, Weather: ${weatherDesc}.
 Respond as a JSON array: [{"icon":"[emoji]","title":"[short description]"}].
-Start every "title" with a capital letter. 
-Use different, suitable emojis as icons. 
-Only return the JSON array, nothing else.`;
+Start every "title" with a capital letter.
+Use different, suitable emojis as icons.
+Only return the JSON array, nothing else.`
 
     try {
       const response = await fetch("http://localhost:4000/api/gemini", {
@@ -36,7 +50,6 @@ Only return the JSON array, nothing else.`;
       // Versuche, ein JSON-Array aus der Antwort zu parsen
       let suggestions = []
       try {
-        // Hole nur das erste Array aus der Antwort
         const match = data?.candidates?.[0]?.content?.parts?.[0]?.text.match(/\[.*\]/s)
         suggestions = match ? JSON.parse(match[0]) : []
       } catch (e) {
