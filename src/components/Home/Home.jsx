@@ -14,7 +14,7 @@ function Home() {
   const { units, translate } = useTheme()
   const [toast, setToast] = useState(null)
   const [locationLoading, setLocationLoading] = useState(false)
-  const [reload, setReload] = useState(false) // <-- Reload Trigger!
+  const [reload, setReload] = useState(false)
 
   useEffect(() => {
     if (!currentWeather) {
@@ -38,7 +38,6 @@ function Home() {
       setLocationLoading(false)
       return
     }
-
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         try {
@@ -57,9 +56,9 @@ function Home() {
     )
   }
 
-  // Wird von ActivitySuggestions aufgerufen, wenn ein Event hinzugefügt wurde
+  // Jetzt: Warte kurz vor reload (Google ist manchmal langsam!)
   const handleEventAdded = () => {
-    setReload(r => !r)
+    setTimeout(() => setReload(r => !r), 600)
   }
 
   return (
@@ -89,7 +88,11 @@ function Home() {
           </div>
 
           <div className="suggestions-section">
-            <ActivitySuggestions weather={currentWeather} onEventAdded={handleEventAdded} />
+            <ActivitySuggestions
+              weather={currentWeather}
+              selectedDate={new Date()}
+              onEventAdded={handleEventAdded}
+            />
           </div>
         </div>
       )}

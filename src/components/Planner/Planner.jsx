@@ -5,20 +5,16 @@ import { useTheme } from "../../contexts/ThemeContext"
 import Calendar from "./Calendar"
 import WeatherOverlay from "./WeatherOverlay"
 import EventsList from "./EventsList"
-import AddEventModal from "./AddEventModal"
 import Toast from "../UI/Toast"
 import LoadingSpinner from "../UI/LoadingSpinner"
 import ActivitySuggestions from "../Activities/ActivitySuggestions"
 import "./Planner.css"
 
-
 function Planner() {
   const [selectedDate, setSelectedDate] = useState(new Date())
-  const [showAddEventModal, setShowAddEventModal] = useState(false)
-  const [selectedActivity, setSelectedActivity] = useState(null)
   const [toast, setToast] = useState(null)
   const [monthEvents, setMonthEvents] = useState({})
-  const [reloadTrigger, setReloadTrigger] = useState(0)
+  const [reloadTrigger, setReloadTrigger] = useState(0)  // <---
 
   const { isInitialized, fetchEventsForMonth, isAuthorized } = useCalendar()
   const { currentWeather } = useWeather()
@@ -48,22 +44,9 @@ function Planner() {
 
   const handleDateSelect = (date) => setSelectedDate(date)
 
-  const handleActivitySelected = (activity) => {
-    setSelectedActivity(activity.title || activity)
-    setShowAddEventModal(true)
-  }
-
-  // RICHTIG: Diese Funktion schließt das Modal und macht den Reload!
+  // Wird aufgerufen, wenn ActivitySuggestions ein Event hinzugefügt hat!
   const handleEventAdded = () => {
-    console.log("handleEventAdded() called");
     setReloadTrigger(r => r + 1)
-    setShowAddEventModal(false)
-    setSelectedActivity(null)
-  }
-
-  const handleCloseModal = () => {
-    setShowAddEventModal(false)
-    setSelectedActivity(null)
   }
 
   if (!isInitialized) {
@@ -119,21 +102,11 @@ function Planner() {
             <ActivitySuggestions
               weather={currentWeather}
               selectedDate={selectedDate}
-              onActivitySelected={handleActivitySelected}
               onEventAdded={handleEventAdded}
             />
           </div>
         </div>
       </div>
-      {showAddEventModal && (
-        <AddEventModal
-          isOpen={showAddEventModal}
-          activity={selectedActivity}
-          selectedDate={selectedDate}
-          onClose={handleCloseModal}
-          onEventAdded={handleEventAdded}  // << WICHTIG: Modal schließt nicht sich selbst!
-        />
-      )}
       {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
     </div>
   )

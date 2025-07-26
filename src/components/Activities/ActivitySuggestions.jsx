@@ -1,7 +1,10 @@
 import React, { useState } from "react"
+import AddEventModal from "../Planner/AddEventModal"
 import "./ActivitySuggestions.css"
 
-function ActivitySuggestions({ weather, selectedDate, onActivitySelected }) {
+function ActivitySuggestions({ weather, selectedDate, onEventAdded }) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedActivity, setSelectedActivity] = useState("")
   const [aiSuggestions, setAiSuggestions] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -60,7 +63,15 @@ Only return the JSON array, nothing else.`
   }
 
   const handleActivityClick = (activity) => {
-    if (onActivitySelected) onActivitySelected(activity)
+    setSelectedActivity(activity.title || activity)
+    setModalOpen(true)
+  }
+
+  // Wird NUR im Child aufgerufen!
+  const handleEventAdded = () => {
+    setModalOpen(false)
+    setSelectedActivity("")
+    if (onEventAdded) onEventAdded()
   }
 
   return (
@@ -113,6 +124,14 @@ Only return the JSON array, nothing else.`
           </div>
         ))}
       </div>
+
+      <AddEventModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        activity={selectedActivity}
+        selectedDate={selectedDate}
+        onEventAdded={handleEventAdded}
+      />
     </div>
   )
 }
