@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useEffect } from "react"
 import { useWeather } from "../../contexts/WeatherContext"
 import { useTheme } from "../../contexts/ThemeContext"
@@ -10,20 +9,28 @@ import LoadingSpinner from "../UI/LoadingSpinner"
 import "./Forecast.css"
 
 function Forecast() {
-  const { forecast, loading, error, fetchForecast, currentWeather } = useWeather()
+  // Hier: fetchWeatherByCity mit reinholen!
+  const { forecast, loading, error, fetchForecast, fetchWeatherByCity, currentWeather } = useWeather()
   const { units, translate } = useTheme()
   const [toast, setToast] = useState(null)
+  const [lastCity, setLastCity] = useState(null)
 
+  // Whenever city changes, reload forecast
   useEffect(() => {
-    if (currentWeather && !forecast) {
+    if (currentWeather && currentWeather.name && lastCity !== currentWeather.name) {
       fetchForecast(currentWeather.name)
+      setLastCity(currentWeather.name)
     }
-  }, [currentWeather, forecast, fetchForecast])
+    // eslint-disable-next-line
+  }, [currentWeather])
 
+  // WICHTIG: Immer beide Methoden aufrufen!
   const handleCitySearch = async (city) => {
     try {
+      await fetchWeatherByCity(city)
       await fetchForecast(city)
       setToast({ type: "success", message: `${translate("fiveDayForecast")} loaded for ${city}` })
+      setLastCity(city)
     } catch (err) {
       setToast({ type: "error", message: err.message })
     }
@@ -31,7 +38,6 @@ function Forecast() {
 
   const groupForecastByDay = (forecastData) => {
     if (!forecastData) return []
-
     const grouped = {}
     forecastData.list.forEach((item) => {
       const date = new Date(item.dt * 1000).toDateString()
@@ -40,7 +46,6 @@ function Forecast() {
       }
       grouped[date].push(item)
     })
-
     return Object.entries(grouped).slice(0, 5)
   }
 

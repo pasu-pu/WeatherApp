@@ -1,5 +1,4 @@
-"use client"
-
+// WeatherContext.js
 import { createContext, useContext, useState } from "react"
 
 const WeatherContext = createContext()
@@ -27,16 +26,13 @@ export function WeatherProvider({ children }) {
   const fetchWeatherByCity = async (city) => {
     setLoading(true)
     setError(null)
-
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`,
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
       )
-
       if (!response.ok) {
         throw new Error("City not found")
       }
-
       const data = await response.json()
       setCurrentWeather(data)
 
@@ -45,6 +41,8 @@ export function WeatherProvider({ children }) {
       setRecentSearches(newRecentSearches)
       localStorage.setItem("weathernow_recent_searches", JSON.stringify(newRecentSearches))
 
+      // Reset forecast for new city!
+      setForecast(null)
       return data
     } catch (err) {
       setError(err.message)
@@ -57,18 +55,16 @@ export function WeatherProvider({ children }) {
   const fetchWeatherByCoords = async (lat, lon) => {
     setLoading(true)
     setError(null)
-
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
       )
-
       if (!response.ok) {
         throw new Error("Weather data not available")
       }
-
       const data = await response.json()
       setCurrentWeather(data)
+      setForecast(null)
       return data
     } catch (err) {
       setError(err.message)
@@ -78,19 +74,17 @@ export function WeatherProvider({ children }) {
     }
   }
 
+  // always setForecast, even for the same city!
   const fetchForecast = async (city) => {
     setLoading(true)
     setError(null)
-
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`,
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`
       )
-
       if (!response.ok) {
         throw new Error("Forecast data not available")
       }
-
       const data = await response.json()
       setForecast(data)
       return data

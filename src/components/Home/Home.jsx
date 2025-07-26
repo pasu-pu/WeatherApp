@@ -1,3 +1,4 @@
+// Home.jsx
 import { useState, useEffect } from "react"
 import { useWeather } from "../../contexts/WeatherContext"
 import { useTheme } from "../../contexts/ThemeContext"
@@ -7,6 +8,7 @@ import CalendarSummary from "../Calendar/CalendarSummary"
 import ActivitySuggestions from "../Activities/ActivitySuggestions"
 import Toast from "../UI/Toast"
 import LoadingSpinner from "../UI/LoadingSpinner"
+import { useNavigate } from "react-router-dom"
 import "./Home.css"
 
 function Home() {
@@ -15,6 +17,7 @@ function Home() {
   const [toast, setToast] = useState(null)
   const [locationLoading, setLocationLoading] = useState(false)
   const [reload, setReload] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!currentWeather) {
@@ -52,11 +55,11 @@ function Home() {
       (error) => {
         setToast({ type: "error", message: "Location access denied" })
         setLocationLoading(false)
-      },
+      }
     )
   }
 
-  // Jetzt: Warte kurz vor reload (Google ist manchmal langsam!)
+  // Warte kurz vor reload (Google ist manchmal langsam!)
   const handleEventAdded = () => {
     setTimeout(() => setReload(r => !r), 600)
   }
@@ -72,6 +75,9 @@ function Home() {
         <SearchBar onSearch={handleCitySearch} />
         <button className="location-button" onClick={handleUseLocation} disabled={locationLoading}>
           {locationLoading ? "Getting location..." : "📍 Use My Location"}
+        </button>
+        <button className="forecast-button" onClick={() => navigate("/forecast")}>
+          {translate("fiveDayForecast")}
         </button>
       </div>
 
