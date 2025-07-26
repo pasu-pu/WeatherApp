@@ -5,7 +5,7 @@ import { useCalendar } from "../../contexts/CalendarContext"
 import { useTheme } from "../../contexts/ThemeContext"
 import "./CalendarSummary.css"
 
-function CalendarSummary() {
+function CalendarSummary({ reload }) {
   const [todayEvents, setTodayEvents] = useState([])
   const [loading, setLoading] = useState(false)
   const { fetchTodayEvents, isAuthorized, authorizeCalendar, isInitialized } = useCalendar()
@@ -17,7 +17,6 @@ function CalendarSummary() {
         setTodayEvents([])
         return
       }
-
       try {
         setLoading(true)
         const events = await fetchTodayEvents()
@@ -29,25 +28,20 @@ function CalendarSummary() {
         setLoading(false)
       }
     }
-
     loadTodayEvents()
-  }, [isAuthorized, isInitialized, fetchTodayEvents])
+  }, [isAuthorized, isInitialized, fetchTodayEvents, reload])
 
   const calculateFreeTime = () => {
     if (!todayEvents || todayEvents.length === 0) {
       return translate("allDay") + " " + translate("freeTime")
     }
-
     // Filter events with dateTime (not all-day events)
     const timeEvents = todayEvents.filter((event) => event.start.dateTime && event.end.dateTime)
-
     if (timeEvents.length === 0) {
       return translate("allDay") + " " + translate("freeTime") + " (excluding all-day events)"
     }
-
     // Sort events by start time
     timeEvents.sort((a, b) => new Date(a.start.dateTime) - new Date(b.start.dateTime))
-
     // Calculate total busy time in minutes
     let busyMinutes = 0
     timeEvents.forEach((event) => {
@@ -56,18 +50,14 @@ function CalendarSummary() {
       const duration = (end - start) / (1000 * 60) // convert to minutes
       busyMinutes += duration
     })
-
     // Calculate free time (assuming 16 waking hours)
     const wakingMinutes = 16 * 60
     const freeMinutes = wakingMinutes - busyMinutes
-
     if (freeMinutes <= 0) {
       return "Fully booked today"
     }
-
     const freeHours = Math.floor(freeMinutes / 60)
     const remainingMinutes = Math.round(freeMinutes % 60)
-
     if (freeHours === 0) {
       return `${remainingMinutes} minutes ${translate("freeTime")} today`
     } else if (remainingMinutes === 0) {
@@ -136,7 +126,6 @@ function CalendarSummary() {
               <span className="event-title">{event.summary}</span>
             </div>
           ))}
-
           {todayEvents.length > 3 && <div className="more-events">+{todayEvents.length - 3} more events</div>}
         </div>
       )}

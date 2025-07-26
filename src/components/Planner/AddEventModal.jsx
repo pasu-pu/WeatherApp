@@ -1,16 +1,24 @@
-"use client"
-
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useCalendar } from "../../contexts/CalendarContext"
 import "./AddEventModal.css"
 
-function AddEventModal({ isOpen, onClose, activity, selectedDate }) {
+function AddEventModal({ isOpen, onClose, activity, selectedDate, onEventAdded }) {
   const [startTime, setStartTime] = useState("12:00")
   const [duration, setDuration] = useState(60)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const { addEvent, isAuthorized } = useCalendar()
+  const { addEvent, isAuthorized, authorizeCalendar } = useCalendar()
+
+  useEffect(() => {
+    // Reset Modal state every time it opens
+    if (isOpen) {
+      setStartTime("12:00")
+      setDuration(60)
+      setError(null)
+      setIsLoading(false)
+    }
+  }, [isOpen])
 
   if (!isOpen) return null
 
@@ -18,27 +26,23 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate }) {
     e.preventDefault()
     setIsLoading(true)
     setError(null)
-
     try {
       if (!isAuthorized) {
-        setError("Please connect your Google Calendar first")
-        setIsLoading(false)
-        return
+        const success = await authorizeCalendar()
+        if (!success) {
+          setError("Please authorize Google Calendar access first")
+          setIsLoading(false)
+          return
+        }
       }
-
-      // Create start and end times
       const [hours, minutes] = startTime.split(":").map(Number)
-
       const startDateTime = new Date(selectedDate || new Date())
       startDateTime.setHours(hours, minutes, 0, 0)
-
       const endDateTime = new Date(startDateTime)
       endDateTime.setMinutes(endDateTime.getMinutes() + duration)
-
-      // Create event object
       const event = {
         summary: activity,
-        description: `Weather-based activity suggestion: ${activity}`,
+        description: `Suggested activity: ${activity}`,
         start: {
           dateTime: startDateTime.toISOString(),
           timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -48,20 +52,16 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate }) {
           timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
       }
-
-      console.log("Creating event:", event)
-
-      // Add event to calendar
       const result = await addEvent(event)
-
       if (result) {
-        console.log("Event created successfully")
-        onClose()
+        console.log("Event added! Calling onEventAdded...");
+        // Reihenfolge: Erst reload im Parent, dann Modal schließen!
+        if (onEventAdded) onEventAdded()
+        // NICHT nochmal onClose() hier aufrufen! Das macht der Parent beim Callback.
       } else {
         setError("Failed to add event to calendar. Please try again.")
       }
     } catch (err) {
-      console.error("Error adding event:", err)
       setError("An error occurred while adding the event")
     } finally {
       setIsLoading(false)
@@ -73,17 +73,13 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate }) {
       <div className="modal-content">
         <div className="modal-header">
           <h2>Add Activity to Calendar</h2>
-          <button className="modal-close" onClick={onClose}>
-            ×
-          </button>
+          <button className="modal-close" onClick={onClose}>×</button>
         </div>
-
         <form onSubmit={handleSubmit} className="activity-form">
           <div className="form-group">
             <label>Activity</label>
             <div className="activity-display">{activity}</div>
           </div>
-
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="startTime">Start Time</label>
@@ -95,7 +91,6 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate }) {
                 required
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="duration">Duration</label>
               <select id="duration" value={duration} onChange={(e) => setDuration(Number(e.target.value))}>
@@ -107,7 +102,6 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate }) {
               </select>
             </div>
           </div>
-
           <div className="form-group">
             <label>Date</label>
             <div className="date-display">
@@ -119,9 +113,7 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate }) {
               })}
             </div>
           </div>
-
           {error && <div className="form-error">{error}</div>}
-
           <div className="form-actions">
             <button type="button" className="btn-secondary" onClick={onClose}>
               Cancel

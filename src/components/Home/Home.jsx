@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { useWeather } from "../../contexts/WeatherContext"
 import { useTheme } from "../../contexts/ThemeContext"
@@ -16,9 +14,9 @@ function Home() {
   const { units, translate } = useTheme()
   const [toast, setToast] = useState(null)
   const [locationLoading, setLocationLoading] = useState(false)
+  const [reload, setReload] = useState(false) // <-- Reload Trigger!
 
   useEffect(() => {
-    // Try to get user's location on component mount
     if (!currentWeather) {
       handleUseLocation()
     }
@@ -35,7 +33,6 @@ function Home() {
 
   const handleUseLocation = async () => {
     setLocationLoading(true)
-
     if (!navigator.geolocation) {
       setToast({ type: "error", message: "Geolocation is not supported by this browser" })
       setLocationLoading(false)
@@ -58,6 +55,11 @@ function Home() {
         setLocationLoading(false)
       },
     )
+  }
+
+  // Wird von ActivitySuggestions aufgerufen, wenn ein Event hinzugefügt wurde
+  const handleEventAdded = () => {
+    setReload(r => !r)
   }
 
   return (
@@ -83,11 +85,11 @@ function Home() {
           </div>
 
           <div className="calendar-section">
-            <CalendarSummary />
+            <CalendarSummary reload={reload} />
           </div>
 
           <div className="suggestions-section">
-            <ActivitySuggestions weather={currentWeather} />
+            <ActivitySuggestions weather={currentWeather} onEventAdded={handleEventAdded} />
           </div>
         </div>
       )}

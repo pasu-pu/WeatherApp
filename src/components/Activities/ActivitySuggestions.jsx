@@ -1,10 +1,7 @@
 import React, { useState } from "react"
-import ActivityModal from "./ActivityModal"
 import "./ActivitySuggestions.css"
 
 function ActivitySuggestions({ weather, selectedDate, onActivitySelected }) {
-  const [modalOpen, setModalOpen] = useState(false)
-  const [selectedActivity, setSelectedActivity] = useState("")
   const [aiSuggestions, setAiSuggestions] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -14,12 +11,10 @@ function ActivitySuggestions({ weather, selectedDate, onActivitySelected }) {
     setError(null)
     setAiSuggestions([])
 
-    // Ort aus den Wetterdaten holen
     const city = weather?.name || "your city"
     const country = weather?.sys?.country || ""
     const locationString = `${city}${country ? ", " + country : ""}`
 
-    // Wetterbeschreibung wie gehabt
     const dateString = selectedDate
       ? selectedDate.toLocaleDateString("en-US", {
           weekday: "long",
@@ -35,7 +30,6 @@ function ActivitySuggestions({ weather, selectedDate, onActivitySelected }) {
         }`
       : ""
 
-    // Prompt jetzt dynamisch mit Ort!
     const prompt = `Suggest 5 activities for this day in ${locationString}: ${dateString}, Weather: ${weatherDesc}.
 Respond as a JSON array: [{"icon":"[emoji]","title":"[short description]"}].
 Start every "title" with a capital letter.
@@ -49,10 +43,6 @@ Only return the JSON array, nothing else.`
         body: JSON.stringify({ prompt }),
       })
       const data = await response.json()
-      console.log(
-        "Gemini-RAW-Response:",
-        data?.candidates?.[0]?.content?.parts?.[0]?.text
-      )
       let suggestions = []
       try {
         const match = data?.candidates?.[0]?.content?.parts?.[0]?.text.match(/\[.*\]/s)
@@ -70,8 +60,6 @@ Only return the JSON array, nothing else.`
   }
 
   const handleActivityClick = (activity) => {
-    setSelectedActivity(activity.title || activity)
-    setModalOpen(true)
     if (onActivitySelected) onActivitySelected(activity)
   }
 
@@ -125,13 +113,6 @@ Only return the JSON array, nothing else.`
           </div>
         ))}
       </div>
-
-      <ActivityModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        activity={selectedActivity}
-        selectedDate={selectedDate}
-      />
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { useCalendar } from "../../contexts/CalendarContext"
 import { useTheme } from "../../contexts/ThemeContext"
 import "./EventsList.css"
 
-function EventsList({ date }) {
+function EventsList({ date, reloadTrigger }) { // <--- ACHTUNG: reloadTrigger als Prop!
   const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(false)
   const { fetchEventsForDate, isAuthorized, authorizeCalendar, isInitialized } = useCalendar()
@@ -17,7 +17,6 @@ function EventsList({ date }) {
         setEvents([])
         return
       }
-
       try {
         setLoading(true)
         const fetchedEvents = await fetchEventsForDate(date)
@@ -31,7 +30,7 @@ function EventsList({ date }) {
     }
 
     loadEvents()
-  }, [date, isAuthorized, isInitialized, fetchEventsForDate])
+  }, [date, isAuthorized, isInitialized, fetchEventsForDate, reloadTrigger]) // <---
 
   const getEventIcon = (event) => {
     const summary = event.summary?.toLowerCase() || ""

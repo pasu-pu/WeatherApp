@@ -11,12 +11,14 @@ import LoadingSpinner from "../UI/LoadingSpinner"
 import ActivitySuggestions from "../Activities/ActivitySuggestions"
 import "./Planner.css"
 
+
 function Planner() {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [showAddEventModal, setShowAddEventModal] = useState(false)
   const [selectedActivity, setSelectedActivity] = useState(null)
   const [toast, setToast] = useState(null)
   const [monthEvents, setMonthEvents] = useState({})
+  const [reloadTrigger, setReloadTrigger] = useState(0)
 
   const { isInitialized, fetchEventsForMonth, isAuthorized } = useCalendar()
   const { currentWeather } = useWeather()
@@ -42,13 +44,21 @@ function Planner() {
       }
     }
     loadMonthEvents()
-  }, [selectedDate, isInitialized, isAuthorized, fetchEventsForMonth])
+  }, [selectedDate, isInitialized, isAuthorized, fetchEventsForMonth, reloadTrigger])
 
   const handleDateSelect = (date) => setSelectedDate(date)
 
   const handleActivitySelected = (activity) => {
     setSelectedActivity(activity.title || activity)
     setShowAddEventModal(true)
+  }
+
+  // RICHTIG: Diese Funktion schließt das Modal und macht den Reload!
+  const handleEventAdded = () => {
+    console.log("handleEventAdded() called");
+    setReloadTrigger(r => r + 1)
+    setShowAddEventModal(false)
+    setSelectedActivity(null)
   }
 
   const handleCloseModal = () => {
@@ -103,13 +113,14 @@ function Planner() {
               country: currentWeather.sys.country
             }} />
           )}
-          <EventsList date={selectedDate} />
+          <EventsList date={selectedDate} reloadTrigger={reloadTrigger} />
 
           <div className="activity-suggestions">
             <ActivitySuggestions
               weather={currentWeather}
               selectedDate={selectedDate}
               onActivitySelected={handleActivitySelected}
+              onEventAdded={handleEventAdded}
             />
           </div>
         </div>
@@ -120,6 +131,7 @@ function Planner() {
           activity={selectedActivity}
           selectedDate={selectedDate}
           onClose={handleCloseModal}
+          onEventAdded={handleEventAdded}  // << WICHTIG: Modal schließt nicht sich selbst!
         />
       )}
       {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
