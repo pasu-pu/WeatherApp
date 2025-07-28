@@ -14,29 +14,27 @@ function ActivitySuggestions({ weather, selectedDate, onEventAdded }) {
     setError(null)
     setAiSuggestions([])
 
-    const city = weather?.name || "your city"
+    
+    const city = weather?.name || ""
     const country = weather?.sys?.country || ""
-    const locationString = `${city}${country ? ", " + country : ""}`
-
+    const locationString = city + (country ? `, ${country}` : "")
     const dateString = selectedDate
       ? selectedDate.toLocaleDateString("en-US", {
           weekday: "long",
           year: "numeric",
           month: "long",
-          day: "numeric"
+          day: "numeric",
         })
       : ""
-
     const weatherDesc = weather
-      ? `${weather.temp ? `Temperature: ${weather.temp}°C, ` : ""}${
-          weather.condition || weather.description || ""
+      ? `${weather.main?.temp ? `Temperature: ${weather.main.temp}°C, ` : ""}${
+          weather.weather?.[0]?.description || ""
         }`
       : ""
-
     const prompt = `Suggest 5 activities for this day in ${locationString}: ${dateString}, Weather: ${weatherDesc}.
 Respond as a JSON array: [{"icon":"[emoji]","title":"[short description]"}].
-Start every "title" with a capital letter.
-Use different, suitable emojis as icons.
+Start every "title" with a capital letter. 
+Use different, suitable emojis as icons. 
 Only return the JSON array, nothing else.`
 
     try {
@@ -46,20 +44,23 @@ Only return the JSON array, nothing else.`
         body: JSON.stringify({ prompt }),
       })
       const data = await response.json()
+
+      
       let suggestions = []
-      try {
-        const match = data?.candidates?.[0]?.content?.parts?.[0]?.text.match(/\[.*\]/s)
-        suggestions = match ? JSON.parse(match[0]) : []
-      } catch {
-        suggestions = []
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || ""
+      const match = text.match(/\[.*\]/s)
+      if (match) {
+        suggestions = JSON.parse(match[0])
       }
       setAiSuggestions(suggestions)
-      if (suggestions.length === 0) setError("No AI suggestions received.")
-    } catch {
+      if (suggestions.length === 0) {
+        setError("No AI suggestions received.")
+      }
+    } catch (e) {
       setError("Could not fetch AI suggestions.")
-      setAiSuggestions([])
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   const handleActivityClick = (activity) => {
@@ -67,8 +68,7 @@ Only return the JSON array, nothing else.`
     setModalOpen(true)
   }
 
-  // Wird NUR im Child aufgerufen!
-  const handleEventAdded = () => {
+  const handleModalEventAdded = () => {
     setModalOpen(false)
     setSelectedActivity("")
     if (onEventAdded) onEventAdded()
@@ -76,51 +76,25 @@ Only return the JSON array, nothing else.`
 
   return (
     <div>
-      <h3 style={{ marginBottom: "16px", color: "var(--text-primary)" }}>
-        💡 Activity Suggestions
-      </h3>
-      <button
-        className="ai-btn"
-        onClick={getAiSuggestions}
-        disabled={loading}
-      >
+      <h3 className="activity-suggestions-header">💡 Activity Suggestions</h3>
+
+      <button className="ai-btn" onClick={getAiSuggestions} disabled={loading}>
         {loading ? "Loading..." : "Get AI Suggestions"}
       </button>
-      {error && (
-        <div style={{ color: "red", marginBottom: "8px" }}>{error}</div>
-      )}
 
-      <div>
+      {error && <div className="activity-suggestions-error">{error}</div>}
+
+      <div className="activity-suggestions-list">
         {aiSuggestions.map((suggestion, index) => (
           <div
             key={index}
-            style={{
-              padding: "12px",
-              background: "var(--bg-tertiary)",
-              borderRadius: "8px",
-              marginBottom: "8px",
-              color: "var(--text-primary)",
-              cursor: "pointer",
-              transition: "all 0.2s ease",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.background = "var(--bg-secondary)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "var(--bg-tertiary)")
-            }
+            className="activity-suggestion-item"
             onClick={() => handleActivityClick(suggestion)}
           >
-            <span>
-              {suggestion.icon ? suggestion.icon + " " : ""}
-              {suggestion.title || suggestion}
+            <span className="activity-suggestion-text">
+              {suggestion.icon || ""} {suggestion.title}
             </span>
-            <span style={{ fontSize: "12px", opacity: "0.7" }}>
-              Click to add →
-            </span>
+            <span className="activity-suggestion-action">Click to add →</span>
           </div>
         ))}
       </div>
@@ -130,7 +104,7 @@ Only return the JSON array, nothing else.`
         onClose={() => setModalOpen(false)}
         activity={selectedActivity}
         selectedDate={selectedDate}
-        onEventAdded={handleEventAdded}
+        onEventAdded={handleModalEventAdded}
       />
     </div>
   )

@@ -44,7 +44,7 @@ function Planner() {
 
   const handleDateSelect = (date) => setSelectedDate(date)
 
-  // Wird aufgerufen, wenn ActivitySuggestions ein Event hinzugefügt hat!
+  
   const handleEventAdded = () => {
     setReloadTrigger(r => r + 1)
   }

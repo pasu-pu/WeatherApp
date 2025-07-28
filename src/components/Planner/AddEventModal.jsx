@@ -11,7 +11,6 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate, onEventAdded }
   const { addEvent, isAuthorized, authorizeCalendar } = useCalendar()
 
   useEffect(() => {
-    // Reset Modal state every time it opens
     if (isOpen) {
       setStartTime("12:00")
       setDuration(60)
@@ -40,6 +39,7 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate, onEventAdded }
       startDateTime.setHours(hours, minutes, 0, 0)
       const endDateTime = new Date(startDateTime)
       endDateTime.setMinutes(endDateTime.getMinutes() + duration)
+
       const event = {
         summary: activity,
         description: `Suggested activity: ${activity}`,
@@ -52,16 +52,14 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate, onEventAdded }
           timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
       }
+
       const result = await addEvent(event)
       if (result) {
-        console.log("Event added! Calling onEventAdded...");
-        // Reihenfolge: Erst reload im Parent, dann Modal schließen!
-        if (onEventAdded) onEventAdded()
-        // NICHT nochmal onClose() hier aufrufen! Das macht der Parent beim Callback.
+        onEventAdded()  // Parent re‑loads and closes modal
       } else {
         setError("Failed to add event to calendar. Please try again.")
       }
-    } catch (err) {
+    } catch {
       setError("An error occurred while adding the event")
     } finally {
       setIsLoading(false)
@@ -93,12 +91,16 @@ function AddEventModal({ isOpen, onClose, activity, selectedDate, onEventAdded }
             </div>
             <div className="form-group">
               <label htmlFor="duration">Duration</label>
-              <select id="duration" value={duration} onChange={(e) => setDuration(Number(e.target.value))}>
-                <option value="30">30 minutes</option>
-                <option value="60">1 hour</option>
-                <option value="90">1.5 hours</option>
-                <option value="120">2 hours</option>
-                <option value="180">3 hours</option>
+              <select
+                id="duration"
+                value={duration}
+                onChange={(e) => setDuration(Number(e.target.value))}
+              >
+                <option value={30}>30 minutes</option>
+                <option value={60}>1 hour</option>
+                <option value={90}>1.5 hours</option>
+                <option value={120}>2 hours</option>
+                <option value={180}>3 hours</option>
               </select>
             </div>
           </div>

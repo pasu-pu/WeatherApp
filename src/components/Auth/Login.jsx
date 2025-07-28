@@ -1,28 +1,51 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
 import Toast from "../UI/Toast"
 import "./Auth.css"
 
+
+const EMOJIS = ["☀️", "☁️", "❄️", "🌧️"]
+
 function Login() {
+  const { login } = useAuth()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [toast, setToast] = useState(null)
-  const { login } = useAuth()
+
+  
+  useEffect(() => {
+    const container = document.querySelector(".weather-animation")
+    if (!container) return
+
+    const createEmoji = () => {
+      const span = document.createElement("span")
+      span.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
+      span.className = "weather-emoji"
+      span.style.left = Math.random() * 100 + "vw"
+      const size = Math.random() * 24 + 16
+      span.style.fontSize = size + "px"
+      span.style.animationDuration = (Math.random() * 6 + 6) + "s"
+      container.appendChild(span)
+      span.addEventListener("animationend", () => span.remove())
+    }
+
+    const interval = setInterval(createEmoji, 500)
+    return () => clearInterval(interval)
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-
     try {
       const result = await login(email, password)
       if (!result.success) {
         setToast({ type: "error", message: result.error })
       }
-    } catch (error) {
+    } catch {
       setToast({ type: "error", message: "Login failed. Please try again." })
     } finally {
       setLoading(false)
@@ -31,13 +54,10 @@ function Login() {
 
   return (
     <div className="auth-container">
-      <div className="auth-background">
-        <div className="weather-animation">
-          <div className="cloud"></div>
-          <div className="cloud"></div>
-          <div className="sun"></div>
-        </div>
-      </div>
+      {/* Hier fliegen die Emojis durch */}
+      <div className="weather-animation"></div>
+
+      <div className="auth-background"></div>
 
       <div className="auth-card">
         <div className="auth-logo">
