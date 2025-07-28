@@ -1,3 +1,5 @@
+/* Home.css */
+
 .home-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -36,27 +38,47 @@
 }
 
 .location-button {
-  background: var(--gradient-secondary);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-height: 44px;
-  white-space: nowrap;
+  background: var(--gradient-secondary) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-height: 44px !important;
+  white-space: nowrap !important;
 }
 
 .location-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-large);
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-large) !important;
 }
 
 .location-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Forecast-Button-Styling (identisch zur location-button) */
+.forecast-button {
+  background: var(--gradient-secondary) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-height: 44px !important;
+  white-space: nowrap !important;
+}
+
+.forecast-button:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-large) !important;
 }
 
 .home-content {

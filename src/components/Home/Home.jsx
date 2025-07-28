@@ -23,6 +23,7 @@ function Home() {
     if (!currentWeather) {
       handleUseLocation()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleCitySearch = async (city) => {
@@ -46,13 +47,13 @@ function Home() {
         try {
           await fetchWeatherByCoords(position.coords.latitude, position.coords.longitude)
           setToast({ type: "success", message: "Weather loaded for your location" })
-        } catch (err) {
+        } catch {
           setToast({ type: "error", message: "Failed to get weather for your location" })
         } finally {
           setLocationLoading(false)
         }
       },
-      (error) => {
+      () => {
         setToast({ type: "error", message: "Location access denied" })
         setLocationLoading(false)
       }
@@ -61,7 +62,7 @@ function Home() {
 
   // Warte kurz vor reload (Google ist manchmal langsam!)
   const handleEventAdded = () => {
-    setTimeout(() => setReload(r => !r), 600)
+    setTimeout(() => setReload((r) => !r), 600)
   }
 
   return (
@@ -73,10 +74,20 @@ function Home() {
 
       <div className="search-section">
         <SearchBar onSearch={handleCitySearch} />
-        <button className="location-button" onClick={handleUseLocation} disabled={locationLoading}>
+
+        <button
+          className="location-button"
+          onClick={handleUseLocation}
+          disabled={locationLoading}
+        >
           {locationLoading ? "Getting location..." : "📍 Use My Location"}
         </button>
-        <button className="forecast-button" onClick={() => navigate("/forecast")}>
+
+        {/* Five‑Day Forecast Button */}
+        <button
+          className="forecast-button"
+          onClick={() => navigate("/forecast")}
+        >
           {translate("fiveDayForecast")}
         </button>
       </div>
@@ -103,7 +114,9 @@ function Home() {
         </div>
       )}
 
-      {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
+      {toast && (
+        <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />
+      )}
     </div>
   )
 }

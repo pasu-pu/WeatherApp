@@ -19,6 +19,8 @@ const translations = {
     planActivities: "Plan your activities with weather and calendar integration",
     todaysSchedule: "Today's Schedule",
     weatherForecast: "Weather Forecast",
+    fiveDayForecast: "Five‑Day Forecast",
+    detailedPredictions: "Detailed predictions for the next five days",
     suggestedActivities: "Suggested Activities",
     connectCalendar: "Connect Calendar",
     addToCalendar: "Add to Calendar",
@@ -44,6 +46,8 @@ const translations = {
     planActivities: "Planen Sie Ihre Aktivitäten mit Wetter- und Kalenderintegration",
     todaysSchedule: "Heutiger Zeitplan",
     weatherForecast: "Wettervorhersage",
+    fiveDayForecast: "5‑Tage‑Vorhersage",
+    detailedPredictions: "Detaillierte Vorhersagen für die nächsten fünf Tage",
     suggestedActivities: "Vorgeschlagene Aktivitäten",
     connectCalendar: "Kalender verbinden",
     addToCalendar: "Zum Kalender hinzufügen",
@@ -79,7 +83,6 @@ export function ThemeProvider({ children }) {
     setTheme(savedTheme)
     setUnits(savedUnits)
     setLanguage(savedLanguage)
-
     document.documentElement.setAttribute("data-theme", savedTheme)
   }, [])
 
@@ -106,15 +109,11 @@ export function ThemeProvider({ children }) {
     return translations[language]?.[key] || translations.en[key] || key
   }
 
-  const value = {
-    theme,
-    units,
-    language,
-    toggleTheme,
-    toggleUnits,
-    toggleLanguage,
-    translate,
-  }
-
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  return (
+    <ThemeContext.Provider
+      value={{ theme, units, language, toggleTheme, toggleUnits, toggleLanguage, translate }}
+    >
+      {children}
+    </ThemeContext.Provider>
+  )
 }
