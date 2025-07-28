@@ -61,7 +61,7 @@
   cursor: not-allowed !important;
 }
 
-/* Forecast-Button-Styling (identisch zur location-button) */
+
 .forecast-button {
   background: var(--gradient-secondary) !important;
   color: white !important;

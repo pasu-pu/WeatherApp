@@ -9,13 +9,13 @@ import LoadingSpinner from "../UI/LoadingSpinner"
 import "./Forecast.css"
 
 function Forecast() {
-  // Hier: fetchWeatherByCity mit reinholen!
+  
   const { forecast, loading, error, fetchForecast, fetchWeatherByCity, currentWeather } = useWeather()
   const { units, translate } = useTheme()
   const [toast, setToast] = useState(null)
   const [lastCity, setLastCity] = useState(null)
 
-  // Whenever city changes, reload forecast
+  
   useEffect(() => {
     if (currentWeather && currentWeather.name && lastCity !== currentWeather.name) {
       fetchForecast(currentWeather.name)
@@ -24,7 +24,7 @@ function Forecast() {
     // eslint-disable-next-line
   }, [currentWeather])
 
-  // WICHTIG: Immer beide Methoden aufrufen!
+  
   const handleCitySearch = async (city) => {
     try {
       await fetchWeatherByCity(city)

@@ -60,7 +60,7 @@ function Home() {
     )
   }
 
-  // Warte kurz vor reload (Google ist manchmal langsam!)
+  
   const handleEventAdded = () => {
     setTimeout(() => setReload((r) => !r), 600)
   }
