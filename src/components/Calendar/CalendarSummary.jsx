@@ -103,7 +103,7 @@ function CalendarSummary({ reload }) {
       <div className="calendar-summary">
         <h3>📅 {translate("todaysSchedule")}</h3>
         <div className="calendar-connect">
-          <p>{translate("connectCalendar")} to see your schedule</p>
+          <p>{translate("connectCalendar")}{translate("toCheckSchedule")}</p>
           <button className="connect-button" onClick={handleConnectCalendar}>
             {translate("connectCalendar")}
           </button>

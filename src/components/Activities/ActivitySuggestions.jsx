@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import AddEventModal from "../Planner/AddEventModal"
+import { useTheme } from "../../contexts/ThemeContext"
 import "./ActivitySuggestions.css"
 
 function ActivitySuggestions({ weather, selectedDate, onEventAdded }) {
@@ -8,28 +9,28 @@ function ActivitySuggestions({ weather, selectedDate, onEventAdded }) {
   const [aiSuggestions, setAiSuggestions] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const { translate } = useTheme()
 
   const getAiSuggestions = async () => {
     setLoading(true)
     setError(null)
     setAiSuggestions([])
 
-    
+
     const city = weather?.name || ""
     const country = weather?.sys?.country || ""
     const locationString = city + (country ? `, ${country}` : "")
     const dateString = selectedDate
       ? selectedDate.toLocaleDateString("en-US", {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
       : ""
     const weatherDesc = weather
-      ? `${weather.main?.temp ? `Temperature: ${weather.main.temp}°C, ` : ""}${
-          weather.weather?.[0]?.description || ""
-        }`
+      ? `${weather.temp ? `Temperature: ${weather.temp}°C, ` : ""}${weather.condition || weather.description || ""
+      }`
       : ""
     const prompt = `Suggest 5 activities for this day in ${locationString}: ${dateString}, Weather: ${weatherDesc}.
 Respond as a JSON array: [{"icon":"[emoji]","title":"[short description]"}].
@@ -45,7 +46,7 @@ Only return the JSON array, nothing else.`
       })
       const data = await response.json()
 
-      
+
       let suggestions = []
       const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || ""
       const match = text.match(/\[.*\]/s)
@@ -76,7 +77,7 @@ Only return the JSON array, nothing else.`
 
   return (
     <div>
-      <h3 className="activity-suggestions-header">💡 Activity Suggestions</h3>
+      <h3 className="activity-suggestions-header">💡 {translate("activitySuggestions")}</h3>
 
       <button className="ai-btn" onClick={getAiSuggestions} disabled={loading}>
         {loading ? "Loading..." : "Get AI Suggestions"}
@@ -94,7 +95,7 @@ Only return the JSON array, nothing else.`
             <span className="activity-suggestion-text">
               {suggestion.icon || ""} {suggestion.title}
             </span>
-            <span className="activity-suggestion-action">Click to add →</span>
+            <span className="activity-suggestion-action">{translate("clickToAdd")}</span>
           </div>
         ))}
       </div>

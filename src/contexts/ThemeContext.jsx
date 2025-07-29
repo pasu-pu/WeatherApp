@@ -54,6 +54,9 @@ const translations = {
     language: "Language",
     recSearch: "Recent Searches",
     noRecSearch: "No recent Searches",
+    activitySuggestions: "Activity Suggestions",
+    toCheckSchedule: " to see your Schedule",
+    clickToAdd: "Click to add",
   },
   de: {
     welcome: "Willkommen bei WeatherNow",
@@ -95,6 +98,9 @@ const translations = {
     language: "Sprache",
     recSearch: "Kürzliche Suchanfragen",
     noRecSearch: "Kein Suchverlauf",
+    activitySuggestions: "Vorschläge für Freizeitaktivitäten",
+    toCheckSchedule: " um deine Termine zu sehen",
+    clickToAdd: "Klicken zum hinzufügen",
   },
 }
 
