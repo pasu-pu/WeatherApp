@@ -1,6 +1,4 @@
 
-
-```markdown
 # WeatherNow – Weather & Calendar Web App
 
 ## 🚀 Features
