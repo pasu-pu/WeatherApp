@@ -42,7 +42,7 @@ const translations = {
     gamingSession: "Gaming session",
     yourProfile: "Your Profile",
     profileTabDescription: "Manage your account and preferences",
-    accountInformation: "Account Test",
+    accountInformation: "Account Information",
     name: "Name",
     email: "Email",
     memSince: "Member Since",
@@ -91,10 +91,10 @@ const translations = {
     googleCalendar: "Google Kalender",
     preferences: "Deine Einstellungen",
     theme: "Theme",
-    tempUnit: "Temperatureinheiten",
+    tempUnit: "Temperatureinheit",
     language: "Sprache",
-    recSearch: "kürzliche Suchanfragen",
-    noRecSearch: "kein Suchverlauf",
+    recSearch: "Kürzliche Suchanfragen",
+    noRecSearch: "Kein Suchverlauf",
   },
 }
 
