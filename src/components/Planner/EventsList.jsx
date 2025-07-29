@@ -64,7 +64,7 @@ function EventsList({ date, reloadTrigger }) { // <--- ACHTUNG: reloadTrigger al
   if (!isInitialized) {
     return (
       <div className="events-list-container">
-        <h3>📅 Your Schedule</h3>
+        <h3>📅 {translate("yourSchedule")}</h3>
         <div className="events-loading">{translate("loading")} calendar API...</div>
       </div>
     )
@@ -73,7 +73,7 @@ function EventsList({ date, reloadTrigger }) { // <--- ACHTUNG: reloadTrigger al
   if (!isAuthorized) {
     return (
       <div className="events-list-container">
-        <h3>📅 Your Schedule</h3>
+        <h3>📅 {translate("yourSchedule")}</h3>
         <div className="calendar-connect">
           <p>{translate("connectCalendar")} to see your events</p>
           <button className="connect-button" onClick={handleConnectCalendar}>
@@ -87,7 +87,7 @@ function EventsList({ date, reloadTrigger }) { // <--- ACHTUNG: reloadTrigger al
   if (loading) {
     return (
       <div className="events-list-container">
-        <h3>📅 Your Schedule</h3>
+        <h3>📅 {translate("yourSchedule")}</h3>
         <div className="events-loading">{translate("loading")} events...</div>
       </div>
     )
@@ -95,7 +95,7 @@ function EventsList({ date, reloadTrigger }) { // <--- ACHTUNG: reloadTrigger al
 
   return (
     <div className="events-list-container">
-      <h3>📅 Your Schedule</h3>
+      <h3>📅 {translate("yourSchedule")}</h3>
 
       {events.length === 0 ? (
         <div className="no-events">{translate("noEvents")} for this day</div>

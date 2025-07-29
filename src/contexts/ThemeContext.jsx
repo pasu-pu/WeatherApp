@@ -18,6 +18,7 @@ const translations = {
     welcome: "Welcome to WeatherNow",
     planActivities: "Plan your activities with weather and calendar integration",
     todaysSchedule: "Today's Schedule",
+    yourSchedule: "Your Schedule",
     weatherForecast: "Weather Forecast",
     fiveDayForecast: "Five‑Day Forecast",
     detailedPredictions: "Detailed predictions for the next five days",
@@ -57,11 +58,13 @@ const translations = {
     activitySuggestions: "Activity Suggestions",
     toCheckSchedule: " to see your Schedule",
     clickToAdd: "Click to add",
+    searchForCity: "Search for a city...",
   },
   de: {
     welcome: "Willkommen bei WeatherNow",
     planActivities: "Planen Sie Ihre Aktivitäten mit Wetter- und Kalenderintegration",
     todaysSchedule: "Heutiger Zeitplan",
+    yourSchedule: "Dein Zeitplan",
     weatherForecast: "Wettervorhersage",
     fiveDayForecast: "5‑Tage‑Vorhersage",
     detailedPredictions: "Detaillierte Vorhersagen für die nächsten fünf Tage",
@@ -101,6 +104,7 @@ const translations = {
     activitySuggestions: "Vorschläge für Freizeitaktivitäten",
     toCheckSchedule: " um deine Termine zu sehen",
     clickToAdd: "Klicken zum hinzufügen",
+    searchForCity: "SSuche eine Stadt...",
   },
 }
 

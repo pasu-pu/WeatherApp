@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useWeather } from "../../contexts/WeatherContext"
+import { useTheme } from "../../contexts/ThemeContext"
 import "./SearchBar.css"
 
 function SearchBar({ onSearch }) {
@@ -10,6 +11,8 @@ function SearchBar({ onSearch }) {
   const { recentSearches } = useWeather()
   const inputRef = useRef(null)
   const dropdownRef = useRef(null)
+  const { translate } = useTheme()
+
 
   const filteredSearches = recentSearches.filter((city) => city.toLowerCase().includes(query.toLowerCase()))
 
@@ -69,7 +72,7 @@ function SearchBar({ onSearch }) {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
-          placeholder="Search for a city..."
+          placeholder={translate("searchForCity")}
           className="search-input"
         />
         <button type="submit" className="search-button">
