@@ -59,11 +59,11 @@ function CalendarSummary({ reload }) {
     const freeHours = Math.floor(freeMinutes / 60)
     const remainingMinutes = Math.round(freeMinutes % 60)
     if (freeHours === 0) {
-      return `${remainingMinutes} minutes ${translate("freeTime")} today`
+      return `${remainingMinutes} ${translate("minutes")} ${translate("freeTime")} today`
     } else if (remainingMinutes === 0) {
-      return `${freeHours} ${freeHours === 1 ? "hour" : "hours"} ${translate("freeTime")} today`
+      return `${freeHours} ${freeHours === 1 ? translate("hour") : translate("hours")} ${translate("freeTime")} ${translate("today")}`
     } else {
-      return `${freeHours} ${freeHours === 1 ? "hour" : "hours"} and ${remainingMinutes} minutes ${translate("freeTime")} today`
+      return `${freeHours} ${freeHours === 1 ? translate("hour") : translate("hours")} ${translate("and")} ${remainingMinutes} ${translate("minutes")} ${translate("freeTime")} ${translate("today")}`
     }
   }
 

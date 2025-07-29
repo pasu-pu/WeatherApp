@@ -59,6 +59,11 @@ const translations = {
     toCheckSchedule: " to see your Schedule",
     clickToAdd: "Click to add",
     searchForCity: "Search for a city...",
+    and: "and",
+    hour: "hour",
+    hours: "hours",
+    today: "today",
+    minutes: "minutes",
   },
   de: {
     welcome: "Willkommen bei WeatherNow",
@@ -105,6 +110,11 @@ const translations = {
     toCheckSchedule: " um deine Termine zu sehen",
     clickToAdd: "Klicken zum hinzufügen",
     searchForCity: "Suche eine Stadt...",
+    and: "und",
+    hour: "Stunde",
+    hours: "Stunden",
+    today: "heute",
+    minutes: "minuten",
   },
 }
 
