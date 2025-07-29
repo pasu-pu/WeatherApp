@@ -40,7 +40,6 @@ const translations = {
     indoorActivities: "Indoor activities",
     cafeHopping: "Café hopping",
     gamingSession: "Gaming session",
-    //dictionary for Profile Tab
     yourProfile: "Your Profile",
     profileTabDescription: "Manage your account and preferences",
     accountInformation: "Account Information",
@@ -82,7 +81,6 @@ const translations = {
     indoorActivities: "Indoor-Aktivitäten",
     cafeHopping: "Café-Hopping",
     gamingSession: "Gaming-Session",
-    //dictionary for Profile Tab
     yourProfile: "Dein Profil",
     profileTabDescription: "Verwalte deinen Account und deine Einstellungen",
     accountInformation: "Account Information",
