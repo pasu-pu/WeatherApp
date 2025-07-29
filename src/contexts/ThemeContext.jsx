@@ -109,7 +109,7 @@ const translations = {
     activitySuggestions: "Vorschläge für Freizeitaktivitäten",
     toCheckSchedule: " um deine Termine zu sehen",
     clickToAdd: "Klicken zum hinzufügen",
-    searchForCity: "SSuche eine Stadt...",
+    searchForCity: "Suche eine Stadt...",
     and: "und",
     hour: "Stunde",
     hours: "Stunden",
