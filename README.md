@@ -1,70 +1,102 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+```markdown
+# WeatherNow – Weather & Calendar Web App
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **Current weather & 5-day forecast** (OpenWeatherMap API)
+- **Google Calendar integration** (OAuth2, see/add events)
+- **AI-powered activity suggestions** (Google Gemini via local proxy)
+- **Modern UI:** React, Tailwind, Nginx in production
+- **Easy deployment:** Docker & docker-compose
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🐳 Quickstart (Docker Compose)
 
-### `npm test`
+### 1. **Requirements**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Docker](https://www.docker.com/) & [docker-compose](https://docs.docker.com/compose/) installed
+- **Google API credentials** (for Calendar, OAuth)
+- **Gemini API key** (for AI activity suggestions, used only in proxy service)
 
-### `npm run build`
+### 2. **Project Structure**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+.
+├── Dockerfile\_Frontend
+├── proxy/
+│   ├── Dockerfile\_Proxy
+│   ├── gemini-proxy.js
+│   └── package.json
+├── docker-compose.yml
+├── nginx.conf
+├── src/
+│   └── ... (React source code)
+└── ...
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+````
 
-### `npm run eject`
+### 3. **Start the App**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# From the project root
+docker-compose up --build
+````
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* **Frontend:** [http://localhost:3000](http://localhost:3000)
+* **Proxy (Gemini API):** [http://localhost:4000](http://localhost:4000)
+  (Note: only the frontend should use the proxy, not directly from browser!)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 4. **Configuration & API Keys**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### OpenWeather API Key
 
-## Learn More
+* Set in `WeatherContext.js` by default (can also be moved to `.env`).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Google Calendar API
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Set up a Google OAuth2 client for your app.
+* Credentials are handled client-side; **never commit secrets to git!**
+* OAuth consent flow runs in browser.
 
-### Code Splitting
+#### Gemini Proxy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Gemini API key is passed via `docker-compose.yml` (`GEMINI_API_KEY=...`).
+* The frontend communicates **only** with the local proxy, never directly with Gemini.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📋 Requirements (per Portfolio Assignment)
 
-### Making a Progressive Web App
+Based on the official portfolio assignment (see PDF):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* **Frontend:** Modern React weather web app
+* **Backend/Proxy:** Node.js/Express service as proxy for Gemini API
+* **Dockerized:** Both frontend and proxy in separate containers; orchestrated with `docker-compose`
+* **Google Calendar:** Users can log in via Google, view/add events to their calendar
+* **AI Functionality:** Activity suggestions are generated using Gemini and shown in the UI
+* **Security:** No API keys in frontend code; Gemini key is protected by proxy
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🛠️ Local Development (Optional)
 
-### Deployment
+**Start frontend:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm install
+npm start
+```
 
-### `npm run build` fails to minify
+**Start proxy:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+cd proxy
+npm install
+node gemini-proxy.js
+```
+
+
