@@ -14,6 +14,7 @@ function Profile() {
   const { theme, units, language } = useTheme()
   const { recentSearches } = useWeather()
   const [toast, setToast] = useState(null)
+  const { translate } = useTheme()
 
   const handleConnectCalendar = async () => {
     if (!gapiLoaded || !gisLoaded) {
@@ -48,28 +49,28 @@ function Profile() {
   return (
     <div className="profile-container">
       <div className="profile-header">
-        <h1>Your Profile</h1>
-        <p>Manage your account and preferences</p>
+        <h1>{translate("yourProfile")}</h1>
+        <p>{translate("profileTabDescription")}</p>
       </div>
 
       <div className="profile-content">
         <div className="profile-card user-info">
           <div className="card-header">
-            <h2>Account Information</h2>
+            <h2>{translate("accountInformation")}</h2>
           </div>
           <div className="card-content">
             <div className="profile-avatar">{user?.name?.charAt(0).toUpperCase() || "U"}</div>
             <div className="profile-details">
               <div className="detail-item">
-                <span className="detail-label">Name</span>
+                <span className="detail-label">{translate("name")}</span>
                 <span className="detail-value">{user?.name || "User"}</span>
               </div>
               <div className="detail-item">
-                <span className="detail-label">Email</span>
+                <span className="detail-label">{translate("email")}</span>
                 <span className="detail-value">{user?.email || "No email provided"}</span>
               </div>
               <div className="detail-item">
-                <span className="detail-label">Member Since</span>
+                <span className="detail-label">{translate("memSince")}</span>
                 <span className="detail-value">{new Date().toLocaleDateString()}</span>
               </div>
             </div>
@@ -78,14 +79,14 @@ function Profile() {
 
         <div className="profile-card integrations">
           <div className="card-header">
-            <h2>Connected Services</h2>
+            <h2>{translate("connServices")}</h2>
           </div>
           <div className="card-content">
             <div className="integration-item">
               <div className="integration-info">
                 <div className="integration-icon">📅</div>
                 <div className="integration-details">
-                  <h3>Google Calendar</h3>
+                  <h3>{translate("googleCalendar")}</h3>
                   <p>{getConnectionStatus()}</p>
                 </div>
               </div>
@@ -102,19 +103,19 @@ function Profile() {
 
         <div className="profile-card preferences">
           <div className="card-header">
-            <h2>Your Preferences</h2>
+            <h2>{translate("preferences")}</h2>
           </div>
           <div className="card-content">
             <div className="preference-item">
-              <span className="preference-label">Theme</span>
+              <span className="preference-label">{translate("theme")}</span>
               <span className="preference-value">{theme === "light" ? "Light Mode" : "Dark Mode"}</span>
             </div>
             <div className="preference-item">
-              <span className="preference-label">Temperature Units</span>
+              <span className="preference-label">{translate("tempUnit")}</span>
               <span className="preference-value">{units === "celsius" ? "Celsius (°C)" : "Fahrenheit (°F)"}</span>
             </div>
             <div className="preference-item">
-              <span className="preference-label">Language</span>
+              <span className="preference-label">{translate("language")}</span>
               <span className="preference-value">{language === "en" ? "English" : "German"}</span>
             </div>
           </div>
@@ -122,7 +123,7 @@ function Profile() {
 
         <div className="profile-card recent-searches">
           <div className="card-header">
-            <h2>Recent Searches</h2>
+            <h2>{translate("recSearch")}</h2>
           </div>
           <div className="card-content">
             {recentSearches.length > 0 ? (
@@ -135,7 +136,7 @@ function Profile() {
                 ))}
               </ul>
             ) : (
-              <p className="no-searches">No recent searches</p>
+              <p className="no-searches">{translate("noRecSearch")}</p>
             )}
           </div>
         </div>
