@@ -42,7 +42,7 @@ const translations = {
     gamingSession: "Gaming session",
     yourProfile: "Your Profile",
     profileTabDescription: "Manage your account and preferences",
-    accountInformation: "Account Information",
+    accountInformation: "Account Test",
     name: "Name",
     email: "Email",
     memSince: "Member Since",
